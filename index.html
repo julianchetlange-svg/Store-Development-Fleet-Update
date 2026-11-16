@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Store Development, Facilities &amp; Fleet — Leadership Update</title>
+<style>
+  :root{
+    --navy:#0f1f45; --bg:#f3f6f9; --card:#fff; --ink:#1c2433; --muted:#5b6678; --line:#e3e8ef;
+    --b1:#0e7c93; --b1-soft:#e3f3f6;
+    --b2:#0d6b5c; --b2-soft:#e2f2ee;
+    --b3:#7c3aed; --b3-soft:#f0e9fd;
+    --green:#1f9d55; --amber:#d98a00; --blue:#2f6fd1; --grey:#8a94a6; --teal:#0e7c93;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
+  header{background:var(--navy);color:#fff;padding:22px 32px}
+  .hdr{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+  .eyebrow{letter-spacing:.28em;font-size:12px;font-weight:700;opacity:.75;text-transform:uppercase}
+  h1{margin:4px 0 0;font-size:24px;font-weight:600}
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .toggle{display:flex;background:rgba(255,255,255,.12);border-radius:8px;padding:3px}
+  .toggle button{border:0;background:transparent;color:#fff;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:14px}
+  .toggle button.on{background:#fff;color:var(--navy);font-weight:600}
+  select,.btn{font:inherit;font-size:14px;padding:7px 10px;border-radius:7px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;cursor:pointer}
+  select option{color:var(--ink)}
+  main{max-width:1200px;margin:0 auto;padding:24px 32px 60px}
+  .sub{color:var(--muted);margin:0 0 18px;font-size:15px}
+  h2{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:30px 0 12px}
+  a{color:var(--b1)}
+
+  .buckets{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .bucket{background:var(--card);border-radius:4px;box-shadow:0 1px 4px rgba(15,31,69,.08);cursor:pointer;transition:transform .12s,box-shadow .12s;outline:3px solid transparent;display:flex;flex-direction:column}
+  .bucket:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(15,31,69,.12)}
+  .bucket.active{outline-color:var(--accent)}
+  .bucket.dim{opacity:.45}
+  .bhead{background:var(--accent);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:14px}
+  .bnum{font-size:40px;font-weight:700;line-height:1}
+  .btag{font-size:11px;letter-spacing:.22em;font-weight:700}
+  .bbody{padding:14px 18px 16px;flex:1;display:flex;flex-direction:column}
+  .btitle{font-size:19px;font-weight:700;margin:0 0 10px}
+  .secs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .sec{font-size:11.5px;padding:3px 8px;border-radius:20px;background:var(--soft);color:var(--accent);font-weight:600;cursor:pointer;border:1px solid transparent}
+  .sec.on{border-color:var(--accent)}
+  .bstats{display:flex;gap:16px;margin-top:auto;padding-top:10px;border-top:1px solid var(--line)}
+  .bstat b{display:block;font-size:22px;color:var(--accent)}
+  .bstat span{font-size:12px;color:var(--muted)}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .kpi{background:var(--card);border-radius:4px;padding:14px 16px;box-shadow:0 1px 4px rgba(15,31,69,.08);border-top:3px solid var(--navy)}
+  .kpi b{font-size:26px;display:block;color:var(--navy)}
+  .kpi span{font-size:12.5px;color:var(--muted);display:block}
+  .kpi small{font-size:12px;color:var(--muted)}
+
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .panel{background:var(--card);border-radius:4px;padding:16px 18px;box-shadow:0 1px 4px rgba(15,31,69,.08)}
+  .panel h3{margin:0 0 8px;font-size:15px}
+  .panel ul{margin:0;padding-left:18px}
+  .panel li{margin:5px 0;font-size:14px}
+
+  .mixwrap{background:var(--card);border-radius:4px;padding:16px 18px;box-shadow:0 1px 4px rgba(15,31,69,.08)}
+  .mixbar{display:flex;height:24px;border-radius:4px;overflow:hidden;background:var(--line)}
+  .mixbar div{display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden}
+
+  .filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+  .chip{font-size:13px;padding:5px 12px;border-radius:20px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--ink)}
+  .chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .search{flex:1;min-width:180px;padding:7px 12px;border:1px solid var(--line);border-radius:20px;font:inherit;font-size:13px}
+  .clear,.expand{font-size:13px;color:var(--b1);cursor:pointer;background:none;border:0;text-decoration:underline}
+  .item{background:var(--card);border-radius:4px;box-shadow:0 1px 4px rgba(15,31,69,.08);margin-bottom:10px;border-left:5px solid var(--accent);overflow:hidden}
+  .itop{display:flex;gap:14px;align-items:center;padding:13px 16px;cursor:pointer}
+  .itop:hover{background:#fafbfd}
+  .ibadge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;background:var(--soft);color:var(--accent);white-space:nowrap}
+  .ititle{flex:1;font-weight:600;font-size:15px}
+  .status{font-size:12px;font-weight:600;padding:3px 10px;border-radius:20px;color:#fff;white-space:nowrap}
+  .caret{color:var(--muted);transition:transform .15s}
+  .item.open .caret{transform:rotate(90deg)}
+  .idetail{display:none;padding:14px 16px 16px 36px;border-top:1px solid var(--line)}
+  .item.open .idetail{display:block}
+  .idetail ul{margin:0;padding-left:18px;font-size:14px}
+  .idetail li{margin:3px 0}
+  .ilink{margin-top:8px;font-size:13.5px}
+  .charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+  .wchart{position:relative;border:1px solid var(--line);border-radius:4px;padding:10px 12px 6px}
+  .wchart h5{margin:0 0 2px;font-size:13px;font-weight:600;color:var(--ink)}
+  .wchart .csub{font-size:12px;color:var(--muted);margin-bottom:4px}
+  .wchart svg{width:100%;height:auto;display:block;overflow:visible}
+  .wchart .tip{position:absolute;pointer-events:none;background:var(--navy);color:#fff;font-size:12px;padding:4px 8px;border-radius:4px;white-space:nowrap;transform:translate(-50%,-120%);display:none}
+  .wchart details{font-size:12px;color:var(--muted);margin-top:4px}
+  .wchart table{box-shadow:none;margin-top:4px}
+  .wchart td,.wchart th{padding:3px 8px;font-size:12px}
+  @media (max-width:860px){.charts{grid-template-columns:1fr}}
+  .empty{padding:30px;text-align:center;color:var(--muted);background:#fff;border-radius:4px}
+
+  table{width:100%;border-collapse:collapse;background:var(--card);box-shadow:0 1px 4px rgba(15,31,69,.08);border-radius:4px;overflow:hidden}
+  th,td{text-align:left;padding:10px 14px;font-size:14px;border-bottom:1px solid var(--line)}
+  th{background:#f8fafc;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .hidden{display:none!important}
+  footer{color:var(--muted);font-size:12px;text-align:center;margin-top:40px}
+
+  @media (max-width:860px){
+    .buckets,.twocol{grid-template-columns:1fr}
+    .kpis{grid-template-columns:1fr 1fr}
+    header,main{padding-left:16px;padding-right:16px}
+    .itop{flex-wrap:wrap}
+  }
+  @media print{
+    header{background:#fff;color:var(--navy);border-bottom:2px solid var(--navy)}
+    .controls,.filters{display:none}
+    .item .idetail{display:block!important}
+    .item,.bucket,.panel,.kpi{break-inside:avoid;box-shadow:none;border:1px solid var(--line)}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<!--
+==========================================================================
+ HOW TO UPDATE THIS PAGE
+ Edit only the CONFIG and REPORTS blocks in the script at the bottom.
+ - Add a new object to the TOP of REPORTS for each update
+   The newest (first) update is shown by default; older ones stay in the dropdown.
+ - bucket:  1 = Run & Improve, 2 = Proactive Partner, 3 = Revenue & Customer
+ - section: the heading from your report (e.g. "Fleet Update")
+ - status:  "Complete" | "Live" | "In Progress" | "Waiting" | "Upcoming" | "No Activity"
+ - notes:   the bullets from your report for that item
+ - charts:  optional [{ title, unit, yMax (optional, same on paired charts), points:[["8/11",14.0], ...] }] — small trend lines
+ - health:  { bucket, metric, current, detail } rows for the metrics table
+ - link:    optional URL to a dashboard / tool
+   (or links: [{ label, url, asOf }] for more than one)
+==========================================================================
+-->
+
+<header>
+  <div class="hdr">
+    <div>
+      <div class="eyebrow" id="deptName"></div>
+      <h1 id="reportTitle">Leadership Update</h1>
+    </div>
+    <div class="controls">
+      <select id="periodSelect" aria-label="Reporting period"></select>
+      <button class="btn" onclick="window.print()">Print / PDF</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div id="emptyReport" class="empty hidden"></div>
+
+  <div id="reportBody">
+    <p class="sub">Click a bucket or a report section to filter the work below.</p>
+
+    <section class="buckets" id="buckets"></section>
+
+    <h2>Key numbers</h2>
+    <section class="kpis" id="metrics"></section>
+
+    <div id="healthWrap">
+      <h2>Compliance &amp; operating metrics</h2>
+      <table>
+        <thead><tr><th>Bucket</th><th>Metric</th><th>Current</th><th>Detail</th></tr></thead>
+        <tbody id="health"></tbody>
+      </table>
+    </div>
+
+    <h2>Follow-ups &amp; dates</h2>
+    <section class="twocol">
+      <div class="panel"><h3>Decisions / follow-ups needed</h3><ul id="asks"></ul></div>
+      <div class="panel"><h3>Upcoming dates</h3><ul id="dates"></ul></div>
+    </section>
+
+    <h2>Items by bucket</h2>
+    <div class="mixwrap"><div class="mixbar" id="mix"></div></div>
+
+    <h2>Work by strategic bucket</h2>
+    <div class="filters" id="filters"></div>
+    <section id="items"></section>
+  </div>
+
+  <footer id="footer"></footer>
+</main>
+
+<script>
+/* ======================= CONFIG ======================= */
+const CONFIG = {
+  department: "Store Development, Facilities & Fleet",
+  landingPage: "https://julianchetlange-svg.github.io/Store-Dev-Facility-Fleet-Landing-Page/",
+  buckets: {
+    1: { tag:"RUN & IMPROVE",      title:"Keep the Lights On",           color:"var(--b1)", soft:"var(--b1-soft)" },
+    2: { tag:"PROACTIVE PARTNER",  title:"Efficiency Outside Our House", color:"var(--b2)", soft:"var(--b2-soft)" },
+    3: { tag:"REVENUE & CUSTOMER", title:"Growth & Business Focus",      color:"var(--b3)", soft:"var(--b3-soft)" }
+  }
+};
+
+/* ======================= REPORTS (newest first) ======================= */
+const REPORTS = [
+  {
+    id:"2026-11-11", label:"Nov 11, 2026",
+
+    metrics:[
+      { label:"2026 CAPEX spent thru Oct", value:"$12,935,995", sub:"66.7% of $19,401,378 budget · $6,465,383 remaining · Contingency $2,500,000" },
+      { label:"2026 Fleet spent YTD", value:"$4,455,454", sub:"Budget $3,299,000 · $1,070,000 additional scheduled" },
+      { label:"2026 projects complete", value:"123 / 149", sub:"8 active · 16 pre-construction · 6 behind pace (123 of 129) · as of 11/12" },
+      { label:"Fleet assets purchased", value:"64", sub:"44 forklifts · 16 trucks · 2 pickups · 2 Lumber Buddy" }
+    ],
+
+    health:[
+      { bucket:1, metric:"PM compliance (overdue)", current:"1.92%", detail:"28 of 1,458 assets as of 11/09 · all have open WOs · 1 critical (>90 days)" },
+      { bucket:1, metric:"Registration & inspection", current:"3.1% · 8 overdue", detail:"23 of 739 assets due in 30 days or less as of 11/11 (down from 7.5% on 11/04) · 8 overdue: 2 registration, 6 inspections (down 38.5% from 13 on 07/29)" },
+      { bucket:1, metric:"Fleet — average work order age", current:"10.7 days", detail:"90-day change: ▼ 3.3 days (−24%) from 14.0 on 8/11 · prior week 11.6 · as of 11/09" },
+      { bucket:1, metric:"Facility — average work order age", current:"23.4 days", detail:"90-day change: ▼ 6.8 days (−23%) from 30.2 on 8/11 · prior week 20.3 (up 3 weeks in a row) · as of 11/09" },
+      { bucket:3, metric:"Fleet expenses YTD (through September)", current:"$12.015M", detail:"Down $1.28M vs 2025 · maintenance categories all at or below 2025 · fuel +$1.27M (+20.3%) · tires +11.9%" },
+      { bucket:3, metric:"Facilities maintenance spend YTD (excl. CAPEX & PM)", current:"$3.207M", detail:"Down $962K (−23.1%) vs 2025 YTD ($4.169M) · October −4.2% vs prior year · PM $889K YTD (+7.0%) · through October" },
+      { bucket:2, metric:"Truck utilization (fleet average)", current:"27.0%", detail:"Target ≥40% · 0 of 94 stores on target, 8 watch · 9 non-pickup assets under 10% (removal candidates) · Jan–Oct" },
+      { bucket:2, metric:"Forklift utilization (hours per day)", current:"Stores 3.329 · DCs 3.51", detail:"412 store + 51 DC units · 26 removed to date ($323,742/yr) · Round 2: $266,332/yr identified · DC: $54,946/yr recommended · through 10/31" },
+      { bucket:2, metric:"Fleet all-in cost per mile", current:"$2.79", detail:"Last 3 months $2.86 · delivery fleet $2.19 · forklift $17.07/hr · TMFL $55.17/hr · Jan–Oct total $31.41M" },
+      { bucket:1, metric:"Agent health", current:"8 of 11 healthy", detail:"3 late: BMS Alert Report, DVIR master report, Report hub date updater · 0 failed · ~44 hrs labor saved · as of 11/16 6:20 AM" },
+      { bucket:2, metric:"2026 fuel (full-year estimate)", current:"$9.52M", detail:"vs $7.20M budget (+$2.31M) · November MTD $5.39/gal · 2027 forecast $8.77M · as of 11/12" },
+      { bucket:1, metric:"DVIR inspection completion", current:"Forklifts 68.6% · Vehicles 27.7% · Trailers 16.6%", detail:"Saturday 11/14 inspections · 24 defects on 20 assets → 7 new WOs, 11 to review, 5 already covered" },
+      { bucket:1, metric:"Fleet out of service (over 3 days)", current:"3 assets", detail:"Longest 27 days (754005, Cleveland) · 3 locations · all with JRS Road Service · as of 11/16" },
+      { bucket:1, metric:"2026 projects complete", current:"123 of 149", detail:"6 behind expected 129 (5%; target within 10%) · 8 active · 16 pre-construction · as of 11/12" }
+    ],
+
+    asks:[
+      "Internal Teams: AP program complete — please let us know 2027 plan",
+      "Distribution: follow up with Derwin to see if he wants to make moves on assets",
+      "Forklift Utilization: waiting for Ron to review and help move out final outstanding assets",
+      "508 The Retreat: lift station work still up in the air",
+      "Pending contractor meetings: 082, 103, 113",
+      "Store pickup reallocation proposal: approve redeploying 13 pickups for 2027 ($715K CAPEX avoided)"
+    ],
+
+    dates:[
+      "11/17 — Store 066 starts",
+      "11/23 — Hiking trail starts at 508 The Retreat",
+      "11/30 — Internal teams arrive at Store 122 Canyon Lake",
+      "February — Proposed Store 123 Springtown start (opens end of 2027)"
+    ],
+
+    items:[
+      /* ---------- Bucket 1: Run & Improve ---------- */
+      { bucket:1, section:"Fleet Data Analytics", title:"Fleet Compliance — PM, Registration & Inspection", status:"Live",
+        notes:[
+          "PM Compliance — agent automated; running great, still hovering around 2–3%; below 2% the past 2 weeks",
+          "PM (11/09): 28 of 1,458 assets overdue (1.92%), up from 24 (1.65%) on 11/02; down from 73 (4.79%) on 05/19",
+          "PM: all 28 overdue assets have an open work order; 1 critical (>90 days) — 12' Slide Flatbed 699008 at 450 McCoys Millworks, 128 days overdue (WO 774564)",
+          "Registration & Inspection — agent automated",
+          "Reg & Insp (11/11): 23 of 739 assets need attention (due in 30 days or less) — 3.1%, down from 55 (7.5%) on 11/04",
+          "Reg & Insp: 8 assets overdue (2 registration, 6 inspections) — down from 22 on 11/04 and 13 on 07/29 (−38.5%); 0 data gaps"
+        ],
+        links:[
+          { label:"PM Compliance Dashboard", url:"https://julianchetlange-svg.github.io/PM-Compliance-Dashboard/", asOf:"data as of 11/09/2026" },
+          { label:"Registration & Inspection Dashboard", url:"https://julianchetlange-svg.github.io/Fleet-Registration-and-Inspection/", asOf:"data as of 11/11/2026" }
+        ] },
+      { bucket:1, section:"Fleet Data Analytics", title:"Average Work Order Age — Facility & Fleet", status:"In Progress",
+        notes:[
+          "Work order follow-up in place; moved several vendors to auto dispatch",
+          "Automated process with Fexa underway for follow-up emails · Agent automated",
+          "Facility team continues to make improvements on work order management",
+          "Fleet (11/09): average age 10.7 days, down from 11.6 on 11/02 and 14.2 on 07/09 · 513 open (455 prior week) · 36 over 30 days (39 prior) · none over 90 · oldest 81 days",
+          "Facility (11/09): average age 23.4 days, up from 20.3 on 11/02 and 15.5 on 10/19; down from 32.6 on 05/25 · 166 open (199 prior week) · 23 over 30 days (30 prior) · 6 over 90 · oldest 191 days"
+        ],
+        charts:[
+          { title:"Fleet — average work order age, last 90 days", unit:"days", yMax:40,
+            points:[["8/11",14.0],["8/17",13.2],["8/25",13.9],["9/7",12.4],["9/16",11.4],["9/22",12.0],["9/28",11.6],
+                    ["10/6",11.0],["10/13",10.1],["10/19",10.8],["10/26",11.1],["11/2",11.6],["11/9",10.7]] },
+          { title:"Facility — average work order age, last 90 days", unit:"days", yMax:40,
+            points:[["8/11",30.2],["8/17",30.8],["8/21",26.3],["8/27",26.9],["9/7",27.1],["9/16",25.1],["9/22",21.7],
+                    ["9/28",23.2],["10/5",19.7],["10/13",25.5],["10/19",15.5],["10/26",17.7],["11/2",20.3],["11/9",23.4]] }
+        ],
+        links:[
+          { label:"Facilities WO Follow-Up Report", url:"https://julianchetlange-svg.github.io/Facilities-WO-Follow-Up-Report/", asOf:"data as of 11/09/2026" },
+          { label:"Fleet WO Follow-Up Report", url:"https://julianchetlange-svg.github.io/Fleet-WO-Follow-Up/", asOf:"data as of 11/09/2026" }
+        ] },
+      { bucket:1, section:"Fleet Data Analytics", title:"Daily DVIR Analysis", status:"Live",
+        notes:[
+          "Daily review of driver-reported defects, checked against existing Fexa work orders",
+          "Latest (11/16 update, Saturday 11/14 inspections): 24 issues across 20 assets → 19 action items",
+          "7 work orders ready to create (8 issues combined) · 11 need review · 5 already covered by an active work order",
+          "Inspection completion 11/14: forklifts 68.6% (488 of 711) · vehicles 27.7% (138 of 499) · trailers 16.6% (31 of 187) — Saturday volume",
+          "Builds a Fexa upload file for new work orders and region emails listing assets missing inspections"
+        ],
+        links:[{ label:"Daily DVIR Analysis", url:"https://julianchetlange-svg.github.io/Daily-DVIR-Analysis/", asOf:"11/14 inspections, updated 11/16/2026" }] },
+      { bucket:1, section:"Fleet Data Analytics", title:"Fleet Out of Service (over 3 days)", status:"Live",
+        notes:[
+          "Daily tracking of known fleet downtime over 3 days, from the Fexa Out Of Service report (weekdays)",
+          "As of 11/16: 3 assets down at 3 locations — all with JRS Road Service (Houston market)",
+          "754005 24' TA Flatbed — 098 Cleveland — 27 days (WO 763212, open)",
+          "601025 Pickup — 057 Tomball — 15 days (WO 747965, on hold)",
+          "755019 24' TA Flatbed — 113 Montgomery — 10 days (WO 751529, open)"
+        ],
+        links:[{ label:"Fleet Out of Service Tracking", url:"https://julianchetlange-svg.github.io/Fleet-Out-of-Service-Tracking/", asOf:"report of 11/16/2026" }] },
+      { bucket:1, section:"Fleet Update", title:"Current Fleet Assets", status:"Live",
+        notes:[
+          "Daily Fexa fleet asset report — agent-built each morning",
+          "As of 11/16: 1,459 assets at 103 locations · average age 61 months (oldest 334)",
+          "Stores 1,207 (95 locations) · Distribution & Millwork 228 · Headquarters 24",
+          "By class: forklifts 484 · trucks 397 · trailers 231 (oldest class, avg 101 months) · TMFLs 221 · LD vehicles 113 · ancillary 13",
+          "Changes since tracking began 10/28: 4 added · 3 removed · 1 transferred between stores"
+        ],
+        links:[{ label:"Current Fleet Assets", url:"https://julianchetlange-svg.github.io/Current-Fleet-Assets/", asOf:"report of 11/16/2026" }] },
+      { bucket:3, section:"Fleet Update", title:"Fleet Spend — YTD September 2026 (YOY)", status:"Live",
+        notes:[
+          "Note: this report is only through September",
+          "Total fleet expenses $12.015M — down $1.28M vs 2025 YTD ($13.300M)",
+          "Every maintenance category at or below 2025: truck R&T −10.4% ($3.65M) · forklift R&T −3.2% ($3.59M) · trailer R&T −0.2% · PM truck −2.3%",
+          "Maintenance cost per mile $0.441 vs $0.446 (−1.2%) · miles driven 10.02M (−8.0%)",
+          "Fuel $7.507M — up $1.27M (+20.3%) · $5.15/gal vs $3.28 (+57%) · September alone +$316K over 2025",
+          "Tire spend $1.12M — up 11.9%, worsening for a third straight month",
+          "Fleet CAPEX $4.291M through September vs $3.464M annual budget (123.9%)",
+          "Asset count 1,481 vs 2025 average of 1,663 (−10.1%) · fleet transactions down 1,180 (−9.2%)"
+        ],
+        links:[{ label:"Fleet Spend Report YOY", url:"https://julianchetlange-svg.github.io/Fleet-Spend-Report-YOY/", asOf:"through September 2026" }] },
+      { bucket:3, section:"Construction/Facility", title:"Facility Spend — YTD October 2026", status:"Live",
+        notes:[
+          "Facilities maintenance (excl. CAPEX & PM): $3.207M YTD — down $962K (−23.1%) vs 2025 YTD ($4.169M)",
+          "Facilities PM: $889K YTD — up $58K (+7.0%) vs 2025; volume-driven (1,234 invoices vs 1,108; avg PM invoice down 3.9%)",
+          "Facilities CAPEX: $8.481M YTD — down 57.4% vs 2025 ($19.911M)",
+          "Total facility spend: $12.576M YTD — down 49.5% vs 2025 ($24.911M) · Work orders 3,522 vs 3,928 (−10.3%)",
+          "October: first month of 2026 with total spend above prior year ($1.35M vs $1.05M, +29.1%) — driven by one $674K Teinert Construction invoice at Store 122",
+          "October maintenance back under prior year (−4.2%, $327K vs $342K) after two months over; PM +15.9%; work orders above 2025 for a third straight month (322 vs 296)",
+          "Category watch (YTD vs 2025): Extermination +18.7%, Doors +12.4%; HVAC flat (−1.2%); Alarms −34.8%, Racking −88.8%, General Contractor −62.6%"
+        ],
+        links:[{ label:"Facility Spend Dashboard", url:"https://julianchetlange-svg.github.io/Facility-Spend-Dashboard/", asOf:"data through October 2026" }] },
+      { bucket:1, section:"Fleet Data Analytics", title:"Fexa Work Order Follow-Up Automation (work in progress)", status:"In Progress",
+        notes:[
+          "Plan drafted — still a work in progress, no dashboard yet",
+          "Open work orders: automated status-request emails to vendor and store manager on days 5, 10 and 15; at day 20 the WO moves to \"Open Unresponsive\" and the assignee is told to call the vendor (repeats every 5 days)",
+          "Completed WOs with no invoice: invoice requests on days 7, 14 and 21; at day 30 the WO moves to \"Complete No Invoice\" with a 60-day invoicing notice to the vendor and a call-the-vendor task for the assignee (every 7 days)",
+          "Day 90 with no invoice: WO moves to No Charge and closes automatically, with a closure notice to the vendor",
+          "Every email copies fleet.management, is signed by the WO assignee and is saved to the work order in Fexa",
+          "Open items for Fexa: add Open Unresponsive, Complete No Invoice and No Charge statuses · give vendors a No Charge option before and after completion · ask whether No Charge can create a $0 invoice"
+        ] },
+      { bucket:1, section:"Construction/Facility", title:"Project Summary & Progress — 2026 Program", status:"In Progress",
+        notes:[
+          "As of 11/12: 149 projects in the 2026 program — 123 complete (117 closed, 6 post-construction), 8 active, 16 pre-construction, 2 budget plan",
+          "Completion pacing: 123 of 129 expected — 6 behind (5%); KPI target is within 10% of pace → on track",
+          "Program budget $36.8M · cost to date $16.0M (incl. 2025 carryover) · $20.8M remaining",
+          "Closed-project budget variance: −3.7% (−$526K vs $14.4M budgeted) — on track (target ±10%)",
+          "Contingency: $2.4M remaining — $3.54M drawn, $4.78M returned",
+          "Largest active: 122 Canyon Lake new store — $11.0M budget, $3.1M cost to date, projected complete Feb 9, 2027",
+          "7 budget requests pending ($77K requested + 5 TBD) — 071 Nacogdoches at 94 days triggers the >90-day committee-vote rule",
+          "Workload KPI triggered: L. Weiss carrying 14 active/pipeline projects (3.1x team average of 4.6)"
+        ],
+        links:[{ label:"Project Summary & Progress", url:"https://julianchetlange-svg.github.io/Project-Summary-Progress/", asOf:"data as of 11/12/2026" }] },
+      { bucket:1, section:"Construction/Facility", title:"Doors", status:"In Progress",
+        notes:["All doors done except for Harlingen"] },
+      { bucket:1, section:"Construction/Facility", title:"508 — The Retreat (San Marcos)", status:"In Progress",
+        notes:["Hiking trail starts 11/23","Looking at new landscape provider — Sun Grow","Lift station work still up in the air"] },
+      { bucket:1, section:"Construction/Facility", title:"Rio Truss", status:"In Progress",
+        notes:["Minimal drama this week"] },
+
+      /* ---------- Bucket 2: Proactive Partner ---------- */
+      { bucket:1, section:"Agents", title:"Current Agents (12)", status:"Live",
+        notes:[
+          "MTD Fuel Trends — Fuel Forecasting Model — Weekly — ChatGPT, Apps Script, Claude — sends WOW summary email",
+          "Project Summary Report — Weekly — Apps Script, GitHub — sends WOW summary email and WOW contingency email",
+          "PM Compliance Report — Weekly — ChatGPT & Claude",
+          "Registration and Inspection Compliance — Weekly — Claude",
+          "Fleet WO Report — Weekly — Claude",
+          "Facility WO Report — Weekly — Claude",
+          "DVIR Report — Daily — link on Fexa — ChatGPT",
+          "Fleet Out of Service Tracking — Daily — link on Fexa — ChatGPT",
+          "Store Development Landing Page — Claude — dates updated based on GitHub repo commits",
+          "Agent Health — Claude",
+          "BMS Building Alerts — Claude",
+          "HVAC PM Readings — analyzes data and scores unit health as data comes in — Google Apps Script tied to Google Sheet — ChatGPT"
+        ] },
+      { bucket:1, section:"Agents", title:"Agent Health", status:"Live",
+        notes:[
+          "Monitors 11 agents — checked at 6 AM, 10:30 AM and 12 PM Central",
+          "As of 11/16 6:20 AM CT: 8 healthy · 3 late or silent · 0 failed",
+          "Late: BMS Alert Report (last run 3 days ago; expected 9:00 AM Mon–Sat) · DVIR master report (3 days; daily) · Report hub date updater (2 days; daily)",
+          "Estimated labor saved: 44 hours (87 runs × 30 minutes)"
+        ],
+        links:[{ label:"Agent Health Dashboard", url:"https://julianchetlange-svg.github.io/Agent-Health-Dashboard/", asOf:"status as of 11/16/2026 6:20 AM CT" }] },
+      { bucket:1, section:"Agents", title:"Upcoming Agents", status:"Upcoming",
+        notes:["Forklift Utilization — Claude — can possibly move to weekly",
+               "Fleet Lifecycle & Budgeting — Claude — Monthly",
+               "Bi-Weekly & Monthly Update"] },
+      { bucket:2, section:"CAPEX & Budget Planning", title:"2027 Fleet Forecast", status:"Complete",
+        notes:[
+          "Created 2027 Fleet Expense forecast for accounting with adaptive associations for clean upload file",
+          "Covers 1,453 assets at 110 locations · last updated 11/13 (new 15.5K forklift at 359 Burnet from January; planned move of 386045 from 359 to 353 in February)",
+          "2027 baseline location charges $35.70M · actual cost $35.96M",
+          "Store, loaner-pool & HQ charges $26.26M (flat rate $17.00M, mileage $3.16M, fuel) · actual-cost locations (Distribution, Millwork, 355CD, 355) $9.44M",
+          "Fuel is the largest actual cost line: truck $8.11M, forklift $799K, LD $695K — 2027 rate assumed to fall from $5.20 to $3.73 over the year",
+          "Replacements: 77 units in 2027 (61 owned sold, 16 leased returned) · $5.79M new-unit capital, delivered January–July",
+          "Expected sale proceeds $747K (gain on sale +$730K) · net 2027 expense change +$721K (new depreciation +$778K)"
+        ],
+        links:[{ label:"2027 Fleet Forecast", url:"https://julianchetlange-svg.github.io/2027-Fleet-Forecast/", asOf:"updated 11/13/2026" }] },
+      { bucket:2, section:"Construction/Facility", title:"Distribution", status:"Waiting",
+        notes:["Need to follow up with Derwin to see if he wants to make moves on assets",
+               "On-site tech is up and running","Tire container dropped on site by STM"] },
+
+      { bucket:2, section:"Fleet Update", title:"Store-to-Door Pickup Reallocation — 2027 Proposal", status:"In Progress",
+        notes:[
+          "Redeploy 13 underutilized store pickups to 2027 lifecycle replacements instead of buying new (based on Jan–Oct 2026 actuals)",
+          "CAPEX avoided: $715,000 (13 new pickups × $55,000 delivered) · new-truck depreciation not added $143,000/yr",
+          "Store P&L savings: $155,292/yr — 13 stores × $995.46/month flat pickup billing",
+          "Donor stores: lowest miles + highest cost per mile — avg 362 miles/month; Bryan worst at $4.54/mile and 218 miles/month",
+          "Placement by mileage: lowest-odometer trucks go to the highest-usage stores — 3 to Millworks (replacing units at 195K–202K miles), plus Regions 1, 4 and 6 and 7 stores",
+          "$243,241 net book value redeployed · sale proceeds from replaced trucks not included"
+        ],
+        links:[{ label:"Store Pickup Reallocation Proposal", url:"https://julianchetlange-svg.github.io/Store-Pickup-Reallocation/", asOf:"built 11/11/2026" }] },
+
+      { bucket:2, section:"Fleet Data Analytics", title:"WEX Fuel Rebate", status:"Live",
+        notes:[
+          "Rebate analysis of WEX fuel card spend, Jan–Sep 2026 (32,271 transactions, 107 locations)",
+          "Total rebate YTD $64,953 — 1.30% of $4.996M eligible spend (5.89¢ per gallon)",
+          "Consumption (volume) rebate $54,961 at the top 1.10% tier · early-pay rebate $9,993 at 0.20%",
+          "All 9 months reached the top volume tier (110,000+ gallons) · tightest was January at 114,809 gallons (4.2% above the threshold)",
+          "September was the highest month: $9,002 rebate on $692K spend"
+        ],
+        links:[{ label:"WEX Fuel Rebate", url:"https://julianchetlange-svg.github.io/WEX-Fuel-Rebate/", asOf:"data Jan–Sep 2026, built 11/03/2026" }] },
+
+      /* ---------- Bucket 3: Revenue & Customer ---------- */
+      { bucket:3, section:"CAPEX & Budget Planning", title:"2026 CAPEX Budget", status:"In Progress",
+        notes:["2026 CAPEX Budget: $19,401,378",
+               "CAPEX spend — end of October: $12,935,995 (66.7% of budget; $6,465,383 remaining)",
+               "Facility CAPEX $8,480,541 (Facility Spend Dashboard, through Oct) + Fleet $4,455,454",
+               "Up $957,540 from $11,978,455 at end of August",
+               "Contingency $2,500,000 — includes recently approved projects (Pickups & HQ Trail)"] },
+      { bucket:2, section:"CAPEX & Budget Planning", title:"2027 CAPEX Budget Planning", status:"In Progress",
+        notes:[
+          "Adjusted from round 1 meeting · need to make asset timing adjustments",
+          "As of 11/13 Fexa file: 120 projects · $29.47M overall 2027 CAPEX (2027 portion only)",
+          "Committed $19.18M (65.1%, 18 projects): Pre-Construction $9.13M · Active $7.06M · Budget Plan $2.88M · On Order $104K",
+          "Candidate $10.29M (34.9%, 102 budget requests): Store Development $6.00M (50) · Fleet $4.29M (52)",
+          "By area: Store Development $22.20M (75.3%) — new facilities $16.19M, contingency $2.0M · Fleet $7.28M (24.7%) — lifecycle forklifts $1.88M, TMFLs $1.74M, tractors $1.65M, light duty $780K, additions $1.23M",
+          "11/13 changes: added HQ HVAC RTU replacement · 8303 delivers January 2027"
+        ],
+        links:[{ label:"2027 CAPEX Budget Planning", url:"https://julianchetlange-svg.github.io/CAPEX-Budget-Planning/", asOf:"Fexa data as of 11/13/2026" }] },
+      { bucket:2, section:"Construction/Facility", title:"Budget Meeting — Approved Items", status:"In Progress",
+        notes:["All approved items moving forward or complete",
+               "Active: 061 Complete · 359 Complete · 037 Complete · 050 Complete · 066 Starts 11/17 · 359 Forklift (Container) Ordered",
+               "Pending: 071 Quoting · 044 Quoting · 082, 103, 113 Pending Contractor Meeting"] },
+      { bucket:3, section:"Construction/Facility", title:"Store 122 — Canyon Lake (New Store)", status:"In Progress",
+        notes:[
+          "Internal teams set to arrive on 11/30",
+          "Report: on schedule except for site utilities and sitework — easy to make up time, not critical path yet",
+          "Schedule (OAC #14 / Minutes #14, data as of 11/13): overall 33.0% complete · substantial completion 5/21/27 · punch list complete 6/18/27",
+          "Complete: PEMB procurement (delivered 10/05) · building pad, foundation and slab · drive-thru pad and foundations",
+          "Behind: site grading/base 31 days overdue (30% done) · drive-thru UG rough-in 17 days and slab/drive 13 days overdue · site utilities 6 days · erect PEMB 6 days",
+          "Budget (Project Summary): $11.0M · $3.1M cost to date"
+        ],
+        links:[{ label:"Canyon Lake Construction Schedule", url:"https://jeff-sasquatch.github.io/Canyon-Lake-Schedule/", asOf:"data as of 11/13/2026 10:45 AM" }] },
+      { bucket:3, section:"Construction/Facility", title:"Store 123 — Springtown (New Store)", status:"In Progress",
+        notes:[
+          "Plans in pricing at the 95% review set · design work moving forward",
+          "Proposed February start date can let us open at the end of 2027",
+          "Schedule (118 activities, rebased from Canyon Lake): Teinert bid review & contract 11/30–12/27/26 · order PEMB 1/18/27 (90-day lead) · mobilize 2/1/27",
+          "Building: erect PEMB 4/26–6/6/27 · final CO 10/23/27 · punch list complete 11/6/27",
+          "Turnover to Store Planning 11/8/27 · 6-week store set-up (reduced crew Thanksgiving week) finishing 12/17/27"
+        ],
+        links:[{ label:"Springtown 123 Schedule", url:"https://julianchetlange-svg.github.io/index/", asOf:"schedule updated 11/02/2026" }] },
+      { bucket:2, section:"Fleet Update", title:"355CD / Region 5 Fleet Analysis", status:"In Progress",
+        notes:[
+          "Gave Manny comprehensive analysis",
+          "Need to update with central ship data and be sure logic considers additional deliveries with or without asset moves",
+          "2027 forecast for 355CD Pharr Central Delivery, 355 Pharr Reload and 11 Region 5 stores — 125 assets",
+          "Current scenario: 10 assets moved to stores, 5 relocated out of Region 5 · 355CD goes from 29 to 16 assets",
+          "Location charges $2.58M baseline → $2.53M scenario (−$53K): central charges −$214K, store charges +$162K",
+          "Region 5 operating cost −$61K — mostly $54K of removals, which moves to the receiving regions rather than leaving the company"
+        ],
+        links:[{ label:"355CD / Region 5 Fleet Analysis", url:"https://julianchetlange-svg.github.io/355CD-Region-5-Analysis/", asOf:"updated 11/04/2026" }] },
+      { bucket:1, section:"Internal Teams & Construction Supervisors", title:"Internal Teams", status:"In Progress",
+        notes:["Teams coming to HQ to build bridge for trail extension",
+               "Preparing to schedule the team for Canyon Lake starting November 30",
+               "AP program complete — please let us know 2027 plan"] },
+      { bucket:2, section:"Fleet Update", title:"2027 Flat Rate (work in progress)", status:"In Progress",
+        notes:[
+          "Still a work in progress · rebuilding the flat rate program utilizing AI, working on 2027 rates",
+          "Calculator built on the 11/13 asset list (1,459 assets): 1,176 charged at 95 stores, 283 at excluded locations",
+          "Current draft: $1.86M per month / $22.27M per year · average $1,578 per asset per month including maintenance",
+          "Maintenance billed by actual use — rate per mile or hour by asset type (from the cost-per-mile analysis); pickups $0.14/mile",
+          "Back-test on Jan–Sep 2026 usage: new rates $16.73M vs old flat rate billed $15.15M (+10.5%) vs actual expense $15.57M",
+          "Old flat rate under-recovered actual expense by $420K; draft rates over-recover by $1.17M — still being tuned"
+        ],
+        links:[{ label:"Flat Rate Calculator", url:"https://julianchetlange-svg.github.io/Flat-Rate-Charges/", asOf:"work in progress, updated 11/13/2026" }] },
+      { bucket:3, section:"Fleet Update", title:"Fleet Assets & 2026 Budget", status:"In Progress",
+        notes:["Assets purchased: 44 forklifts · 16 trucks · 2 pickups · 2 Lumber Buddy (64 total)",
+               "Total assets: 50 planned / 60 delivered / 10 contingency",
+               "$1,070,000 additional spend scheduled for 2026",
+               "All early purchase assets delivered; added 2 pickups out of stock",
+               "2026 Fleet spent YTD: $4,455,454 (budget $3,299,000)"] },
+      { bucket:2, section:"Fleet Data Analytics", title:"Truck Utilization", status:"Live",
+        notes:[
+          "Version 8 complete — dashboard now refreshed through October (Jan–Oct 2026, updated 11/08)",
+          "Monthly files pulled for Scott through September",
+          "Fleet average utilization (time away from store): 27.0% across 421 assets at 94 locations — target ≥40%",
+          "Stores: 0 on target (≥40%) · 8 watch (35–39%) · 86 under target — top store 074 Bee Cave at 39.7%",
+          "9 non-pickup assets under 10% utilization flagged as removal candidates",
+          "Route weight utilization 36.9% (target ≥50%) · 2.28 deliveries per route · 24.1 miles per delivery",
+          "YTD: 296,882 deliveries · 7.28M miles · fleet charge $12.49M · fuel $4.94M → $2.39 per mile, $58.69 per delivery",
+          "Need to cover truck reductions at some point — focus is conveyors and 12' slide trucks"
+        ],
+        links:[{ label:"Truck Utilization Command Center", url:"https://julianchetlange-svg.github.io/Fleet-Utilization-TWRE/", asOf:"data Jan–Oct 2026, updated 11/08/2026" }] },
+      { bucket:2, section:"Fleet Data Analytics", title:"Forklift Utilization — Store & Distribution", status:"Waiting",
+        notes:[
+          "Version 9 complete — October update complete (hours and spend through 10/31)",
+          "Waiting for Ron to review and help move out final outstanding assets",
+          "Store fleet: 412 forklifts · average 3.329 hours per day · 48 stores below the company average",
+          "Right-sizing to date: 26 units removed after Ron's review — $323,742/yr P&L savings (23 disposed, 2 off the 10/31 roster, 1 pending sale)",
+          "Right-sizing lifted store average from 3.131 to 3.329 hours per day (+0.198) with the same workload on 26 fewer units",
+          "Round 2: 20 recommendations worth $266,332/yr ($175,562 firm + $90,770 potential) · 1 of 6 approved removals done, $66,583/yr pending",
+          "Distribution: 51 forklifts at 4 DCs · average 3.51 hours per day (+5.4% vs stores) · annual P&L cost $442,199",
+          "Distribution: 5 recommended removals at Burnet and Midland worth $54,946/yr · 1 more held for review ($13,042/yr) · 11 units flagged below 2.11 hours per day"
+        ],
+        links:[
+          { label:"Store Forklift Utilization", url:"https://julianchetlange-svg.github.io/Forklift-Utilization-Report/", asOf:"data through 10/31/2026" },
+          { label:"Distribution Forklift Utilization", url:"https://julianchetlange-svg.github.io/Distribution-Forklift-Utilization-/", asOf:"data through 10/31/2026" }
+        ] },
+      { bucket:2, section:"Fleet Data Analytics", title:"Fuel Forecast & Trends", status:"Live",
+        notes:[
+          "Added hedging tool · worked with IS on API",
+          "2026 full-year estimate $9.52M vs $7.20M original budget — +$2.31M over (Jan–Oct actuals, November at MTD rate, December market view −4%)",
+          "Monthly rate rose from $3.42/gal in January to $5.54 in September; October actual $5.50/gal ($922K vs $640K budget)",
+          "November MTD (Nov 2–8): $211,048 spend · 39,124 gallons · blended $5.39/gal · 27% dispensed on-site",
+          "2027 forecast $8.77M — 7.9% below the 2026 estimate but 21.7% above the 2026 original budget · average $4.35/gal (H1 $4.73, H2 $3.96)",
+          "Hedge view: 2.34M gallons exposed Nov 2026–Dec 2027 · every $0.10/gal move = ±$234K unhedged"
+        ],
+        links:[{ label:"Fuel Forecast & Trends", url:"https://julianchetlange-svg.github.io/MTD-Fuel-Trends/", asOf:"week of Nov 2–8, updated 11/12/2026" }] },
+      { bucket:2, section:"Fleet Data Analytics", title:"Fleet Cost per Mile / Hour (Actual)", status:"Live",
+        notes:[
+          "Built and live on landing page · data through 10/31 (built 11/08)",
+          "Will use data to help build 2027 flat rate",
+          "Total fleet cost Jan–Oct: $31.41M (maintenance, fuel, onsite diesel, propane, depreciation, registration & taxes) · run rate $37.69M/yr · 1,463 units active in October",
+          "All-in cost per mile $2.79 (last 3 months $2.86) · delivery fleet $2.19 (last 3 months $2.24) · truck & LD $1.77 over 11.24M miles",
+          "Store-to-door pickups $1.18 per mile (806,310 miles)",
+          "Forklift $17.07 per hour (384,009 hours) · TMFL $55.17 per hour (48,156 hours) · trailer & ancillary $890 per asset-month"
+        ],
+        links:[{ label:"Fleet Cost per Mile / Hour Analysis", url:"https://julianchetlange-svg.github.io/Fleet-CMP-HOUR-Analysis/", asOf:"data through 10/31/2026" }] },
+
+      { bucket:3, section:"Fleet Data Analytics", title:"Fleet Lifecycle & Budget Forecasting Tool", status:"Live",
+        notes:["Built and on landing page"],
+        link:"https://julianchetlange-svg.github.io/Fleet-Lifecycle-Budget/" }
+    ]
+  }
+];
+
+/* ======================= APP (no edits needed below) ======================= */
+const STATUS = {
+  "Complete":"var(--green)", "Live":"var(--teal)", "In Progress":"var(--blue)",
+  "Waiting":"var(--amber)", "Upcoming":"var(--grey)", "No Activity":"#b3bac6"
+};
+
+let state = { reportId:null, bucket:null, section:null, status:null, q:"" };
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[m]));
+const show = (id, on) => $(id).classList.toggle("hidden", !on);
+const list = (arr, empty) => (arr && arr.length) ? arr.map(x => `<li>${esc(x)}</li>`).join("") : `<li>${empty}</li>`;
+
+function current(){ return REPORTS.find(r => r.id === state.reportId); }
+
+function loadFromHash(){
+  let p; try { p = new URLSearchParams(location.hash.slice(1)); } catch (e) { return; }
+  if (p.get("r")) state.reportId = p.get("r");
+}
+function saveHash(){
+  try { history.replaceState(null, "", "#r=" + state.reportId); } catch (e) {}
+}
+
+function fillPeriods(){
+  const l = REPORTS;
+  if (!l.find(r => r.id === state.reportId)) state.reportId = l[0]?.id || null;
+  $("periodSelect").innerHTML = l.length
+    ? l.map(r => `<option value="${r.id}" ${r.id===state.reportId?"selected":""}>${esc(r.label)}</option>`).join("")
+    : `<option>No reports yet</option>`;
+}
+
+
+function chartHTML(c){
+  const W=520,H=150,L=34,R=40,T=12,B=24, pts=c.points, n=pts.length;
+  const max=Math.max(...pts.map(p=>p[1])), top=c.yMax || Math.ceil(max/10)*10 || 10;
+  const x=i=>L+(n===1?0:i*(W-L-R)/(n-1)), y=v=>T+(H-T-B)*(1-v/top);
+  const grid=[0,top/2,top].map(v=>`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="#e3e8ef" stroke-width="1"/>
+    <text x="${L-6}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="#5b6678">${v}</text>`).join("");
+  const xl=pts.map((p,i)=> (i===0||i===n-1||(i%3===0&&i<n-2)) ? `<text x="${x(i)}" y="${H-6}" text-anchor="middle" font-size="11" fill="#5b6678">${esc(p[0])}</text>` : "").join("");
+  const path=pts.map((p,i)=>`${i?"L":"M"}${x(i).toFixed(1)},${y(p[1]).toFixed(1)}`).join("");
+  const first=pts[0], last=pts[n-1], chg=last[1]-first[1];
+  const data=esc(JSON.stringify({pts, xs:pts.map((p,i)=>x(i)), ys:pts.map(p=>y(p[1])), W, unit:c.unit||""}));
+  return `<div class="wchart" data-chart="${data}">
+    <h5>${esc(c.title)}</h5>
+    <div class="csub">${first[1].toFixed(1)} → ${last[1].toFixed(1)} ${esc(c.unit||"")} (${chg<=0?"▼":"▲"} ${Math.abs(chg).toFixed(1)} since ${esc(first[0])})</div>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(c.title)}: ${first[1]} on ${esc(first[0])} to ${last[1]} on ${esc(last[0])}">
+      ${grid}${xl}
+      <path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="${x(n-1)}" cy="${y(last[1])}" r="4" fill="var(--accent)" stroke="#fff" stroke-width="2"/>
+      <text x="${x(n-1)+8}" y="${y(last[1])+4}" font-size="12" font-weight="600" fill="#1c2433">${last[1]}</text>
+      <line class="xh" y1="${T}" y2="${H-B}" stroke="#8a94a6" stroke-width="1" stroke-dasharray="3,3" style="display:none"/>
+      <circle class="hd" r="4" fill="var(--accent)" stroke="#fff" stroke-width="2" style="display:none"/>
+      <rect x="${L}" y="0" width="${W-L-R}" height="${H}" fill="transparent" class="hit"/>
+    </svg>
+    <div class="tip"></div>
+    <details><summary>View data</summary><table><tr><th>Week</th><th>Avg age (${esc(c.unit||"")})</th></tr>
+      ${pts.map(p=>`<tr><td>${esc(p[0])}</td><td>${p[1]}</td></tr>`).join("")}</table></details>
+  </div>`;
+}
+function render(){
+  const r = current();
+  $("deptName").textContent = CONFIG.department;
+  $("reportTitle").textContent = r ? `Leadership Update — ${r.label}` : "Leadership Update";
+  show("reportBody", !!r); show("emptyReport", !r);
+  if (!r){
+    $("emptyReport").innerHTML = "No updates have been added yet.";
+    $("footer").textContent = CONFIG.department;
+    return;
+  }
+  const items = r.items || [];
+
+  // Buckets with report sections
+  $("buckets").innerHTML = [1,2,3].map(n => {
+    const b = CONFIG.buckets[n], its = items.filter(i => i.bucket === n);
+    const secs = [...new Set(its.map(i => i.section))];
+    const cls = state.bucket === n ? "active" : (state.bucket ? "dim" : "");
+    return `<div class="bucket ${cls}" style="--accent:${b.color};--soft:${b.soft}" data-bucket="${n}">
+      <div class="bhead"><div class="bnum">${n}</div><div class="btag">${b.tag}</div></div>
+      <div class="bbody">
+        <div class="btitle">${b.title}</div>
+        <div class="secs">${secs.map(s =>
+          `<span class="sec ${state.section===s && state.bucket===n?"on":""}" data-section="${esc(s)}" data-b="${n}">${esc(s)} (${its.filter(i=>i.section===s).length})</span>`).join("")}</div>
+        <div class="bstats">
+          <div class="bstat"><b>${its.length}</b><span>items</span></div>
+          <div class="bstat"><b>${its.filter(i=>i.status==="Complete"||i.status==="Live").length}</b><span>complete / live</span></div>
+          <div class="bstat"><b>${its.filter(i=>i.status==="Waiting").length}</b><span>waiting</span></div>
+        </div>
+      </div></div>`;
+  }).join("");
+
+  $("metrics").innerHTML = (r.metrics || []).map(m =>
+    `<div class="kpi"><span>${esc(m.label)}</span><b>${esc(m.value)}</b><small>${esc(m.sub)}</small></div>`).join("");
+
+  const health = r.health || [];
+  show("healthWrap", health.length > 0);
+  const hShown = health.map((m,idx)=>[m,idx]).filter(([m]) => !state.bucket || m.bucket === state.bucket)
+    .sort((a,b) => (a[0].bucket||9) - (b[0].bucket||9) || a[1] - b[1]).map(x => x[0]);
+  $("health").innerHTML = hShown.map(m => {
+    const b = CONFIG.buckets[m.bucket];
+    const badge = b ? `<span class="ibadge" style="--accent:${b.color};--soft:${b.soft}">${m.bucket} · ${esc(b.tag)}</span>` : "";
+    return `<tr style="${b?`box-shadow:inset 4px 0 0 ${b.color}`:""}"><td>${badge}</td><td>${esc(m.metric)}</td><td><b>${esc(m.current)}</b></td><td>${esc(m.detail)}</td></tr>`;
+  }).join("") || `<tr><td colspan="4" style="color:var(--muted)">No metrics in this bucket.</td></tr>`;
+
+  $("asks").innerHTML = list(r.asks, "None this period");
+  $("dates").innerHTML = list(r.dates, "—");
+
+  const tot = items.length || 1;
+  $("mix").innerHTML = [1,2,3].map(n => {
+    const c = items.filter(i => i.bucket === n).length, v = Math.round(c / tot * 100);
+    return `<div style="width:${v}%;background:${CONFIG.buckets[n].color}" title="Bucket ${n}: ${c} items">${v>=8?`${n} · ${c} items`:""}</div>`;
+  }).join("");
+
+  // Filters
+  const cnt = s => items.filter(i => i.status === s).length;
+  const any = state.bucket || state.section || state.status || state.q;
+  $("filters").innerHTML =
+    `<span class="chip ${!state.status?"on":""}" data-status="">All (${items.length})</span>` +
+    Object.keys(STATUS).filter(s => cnt(s)).map(s => `<span class="chip ${state.status===s?"on":""}" data-status="${s}">${s} (${cnt(s)})</span>`).join("") +
+    `<input class="search" id="q" placeholder="Search items, stores, names…" value="${esc(state.q)}">` +
+    `<button class="expand" id="expandAll">Expand all</button>` +
+    (any ? `<button class="clear" id="clear">Clear filters</button>` : "");
+
+  // Items
+  const q = state.q.toLowerCase();
+  const shown = items.filter(i =>
+    (!state.bucket || i.bucket === state.bucket) &&
+    (!state.section || i.section === state.section) &&
+    (!state.status || i.status === state.status) &&
+    (!q || [i.title, i.section, (i.notes||[]).join(" ")].join(" ").toLowerCase().includes(q))
+  ).map((i,idx) => [i,idx]).sort((a,b) => a[0].bucket - b[0].bucket || a[1] - b[1]).map(x => x[0]);
+
+  $("items").innerHTML = shown.length ? shown.map(i => {
+    const b = CONFIG.buckets[i.bucket];
+    return `<div class="item" style="--accent:${b.color};--soft:${b.soft}">
+      <div class="itop">
+        <span class="ibadge">${i.bucket} · ${esc(i.section)}</span>
+        <div class="ititle">${esc(i.title)}</div>
+        <span class="status" style="background:${STATUS[i.status]||"var(--grey)"}">${esc(i.status)}</span>
+        <span class="caret">▶</span>
+      </div>
+      <div class="idetail">
+        <ul>${(i.notes||[]).map(n => `<li>${esc(n)}</li>`).join("")}</ul>
+        ${i.charts?`<div class="charts">${i.charts.map(chartHTML).join("")}</div>`:""}
+        ${[...(i.links||[]), ...(i.link?[{label:"Open",url:i.link,asOf:i.asOf}]:[])].map(l =>
+          `<div class="ilink"><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label||"Open")} ↗</a>${l.asOf?` <span style="color:var(--muted)">· ${esc(l.asOf)}</span>`:""}</div>`).join("")}
+      </div></div>`;
+  }).join("") : `<div class="empty">No items match these filters.</div>`;
+
+  $("footer").innerHTML = `${esc(CONFIG.department)} · ${esc(r.label)}` +
+    (CONFIG.landingPage ? ` · <a href="${esc(CONFIG.landingPage)}" target="_blank" rel="noopener">Department landing page ↗</a>` : "");
+  saveHash();
+}
+
+/* Events */
+document.addEventListener("click", e => {
+  const sec = e.target.closest(".sec");
+  if (sec){ e.stopPropagation();
+    const s = sec.dataset.section, b = +sec.dataset.b;
+    const same = state.section === s && state.bucket === b;
+    state.section = same ? null : s; state.bucket = same ? null : b;
+    return render();
+  }
+  const bk = e.target.closest(".bucket");
+  if (bk){ const n = +bk.dataset.bucket; state.bucket = state.bucket === n ? null : n; state.section = null; return render(); }
+  const ch = e.target.closest(".chip");
+  if (ch){ state.status = ch.dataset.status || null; return render(); }
+  if (e.target.id === "clear"){ Object.assign(state, {bucket:null,section:null,status:null,q:""}); return render(); }
+  if (e.target.id === "expandAll"){
+    const els = document.querySelectorAll(".item"), open = [...els].every(i => i.classList.contains("open"));
+    els.forEach(i => i.classList.toggle("open", !open)); e.target.textContent = open ? "Expand all" : "Collapse all"; return;
+  }
+  const top = e.target.closest(".itop");
+  if (top) top.parentElement.classList.toggle("open");
+});
+document.addEventListener("mousemove", e => {
+  const hit = e.target.closest && e.target.closest(".wchart .hit");
+  document.querySelectorAll(".wchart").forEach(w => { if (!hit || !w.contains(hit)) {
+    w.querySelector(".tip").style.display="none"; w.querySelector(".xh").style.display="none"; w.querySelector(".hd").style.display="none"; } });
+  if (!hit) return;
+  const w = hit.closest(".wchart"), d = JSON.parse(w.dataset.chart), svg = w.querySelector("svg");
+  const r = svg.getBoundingClientRect(), sx = (e.clientX - r.left) * d.W / r.width;
+  let k = 0; d.xs.forEach((xv,i) => { if (Math.abs(xv - sx) < Math.abs(d.xs[k] - sx)) k = i; });
+  const xh = w.querySelector(".xh"), hd = w.querySelector(".hd"), tip = w.querySelector(".tip");
+  xh.setAttribute("x1", d.xs[k]); xh.setAttribute("x2", d.xs[k]); xh.style.display = "";
+  hd.setAttribute("cx", d.xs[k]); hd.setAttribute("cy", d.ys[k]); hd.style.display = "";
+  const scale = r.width / d.W, wr = w.getBoundingClientRect();
+  tip.textContent = `${d.pts[k][0]}: ${d.pts[k][1]} ${d.unit}`;
+  tip.style.left = (r.left - wr.left + d.xs[k]*scale) + "px"; tip.style.top = (r.top - wr.top + d.ys[k]*scale) + "px"; tip.style.display = "block";
+});
+$("periodSelect").addEventListener("change", e => { state.reportId = e.target.value; Object.assign(state,{bucket:null,section:null,status:null,q:""}); render(); });
+document.addEventListener("input", e => {
+  if (e.target.id === "q"){ state.q = e.target.value; const pos = e.target.selectionStart; render();
+    const el = $("q"); el.focus(); el.setSelectionRange(pos,pos); }
+});
+
+loadFromHash(); fillPeriods(); render();
+</script>
+</body>
+</html>
