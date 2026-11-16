@@ -28,7 +28,7 @@ Instructions for each scheduled refresh (Mon 10 AM, Wed 7 AM, Fri 7 AM Central) 
   own are not added — mention them in the summary instead.
 - **Data only from the sources.** No invented owners, impacts or targets. Statuses: Complete, Live,
   In Progress, Waiting, Upcoming.
-- **Personnel Updates come only from the owner.** Never add, change or remove them in a scheduled run, and
+- **Personnel Updates and Discussion topics come only from the owner.** Never add, change or remove them in a scheduled run, and
   never pull personal information from source repos (the page is public on GitHub Pages).
 - Label different-scope figures so they are not compared directly: facility CAPEX vs total CAPEX
   (facility + fleet), Truck Utilization's $/mile (fleet charge + fuel) vs Fleet CPM all-in $/mile.
