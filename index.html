@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Store Development, Facilities &amp; Fleet — Leadership Update</title>
+<title>Store Development, Facilities &amp; Fleet — Update Summary</title>
 <style>
   :root{
     --navy:#0f1f45; --bg:#f3f6f9; --card:#fff; --ink:#1c2433; --muted:#5b6678; --line:#e3e8ef;
@@ -119,6 +119,7 @@
 ==========================================================================
  HOW TO UPDATE THIS PAGE
  Edit only the CONFIG and REPORTS blocks in the script at the bottom.
+ - The newest (first) update always displays today's date; older ones show their label.
  - Add a new object to the TOP of REPORTS for each update
    The newest (first) update is shown by default; older ones stay in the dropdown.
  - bucket:  1 = Run & Improve, 2 = Proactive Partner, 3 = Revenue & Customer
@@ -136,7 +137,7 @@
   <div class="hdr">
     <div>
       <div class="eyebrow" id="deptName"></div>
-      <h1 id="reportTitle">Leadership Update</h1>
+      <h1 id="reportTitle">Update Summary</h1>
     </div>
     <div class="controls">
       <select id="periodSelect" aria-label="Reporting period"></select>
@@ -552,6 +553,11 @@ const esc = s => String(s ?? "").replace(/[&<>"]/g, m => ({ "&":"&amp;","<":"&lt
 const show = (id, on) => $(id).classList.toggle("hidden", !on);
 const list = (arr, empty) => (arr && arr.length) ? arr.map(x => `<li>${esc(x)}</li>`).join("") : `<li>${empty}</li>`;
 
+// The newest update always shows today's date; older updates keep their own label.
+function dateLabel(r){
+  if (r && r === REPORTS[0]) return new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+  return r ? r.label : "";
+}
 function current(){ return REPORTS.find(r => r.id === state.reportId); }
 
 function loadFromHash(){
@@ -566,7 +572,7 @@ function fillPeriods(){
   const l = REPORTS;
   if (!l.find(r => r.id === state.reportId)) state.reportId = l[0]?.id || null;
   $("periodSelect").innerHTML = l.length
-    ? l.map(r => `<option value="${r.id}" ${r.id===state.reportId?"selected":""}>${esc(r.label)}</option>`).join("")
+    ? l.map(r => `<option value="${r.id}" ${r.id===state.reportId?"selected":""}>${esc(dateLabel(r))}</option>`).join("")
     : `<option>No reports yet</option>`;
 }
 
@@ -601,7 +607,7 @@ function chartHTML(c){
 function render(){
   const r = current();
   $("deptName").textContent = CONFIG.department;
-  $("reportTitle").textContent = r ? `Leadership Update — ${r.label}` : "Leadership Update";
+  $("reportTitle").textContent = r ? `Update Summary — ${dateLabel(r)}` : "Update Summary";
   show("reportBody", !!r); show("emptyReport", !r);
   if (!r){
     $("emptyReport").innerHTML = "No updates have been added yet.";
@@ -687,7 +693,7 @@ function render(){
       </div></div>`;
   }).join("") : `<div class="empty">No items match these filters.</div>`;
 
-  $("footer").innerHTML = `${esc(CONFIG.department)} · ${esc(r.label)}` +
+  $("footer").innerHTML = `${esc(CONFIG.department)} · ${esc(dateLabel(r))}` +
     (CONFIG.landingPage ? ` · <a href="${esc(CONFIG.landingPage)}" target="_blank" rel="noopener">Department landing page ↗</a>` : "");
   saveHash();
 }

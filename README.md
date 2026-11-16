@@ -1,4 +1,4 @@
-# Store Development, Facilities & Fleet — Leadership Update
+# Store Development, Facilities & Fleet — Update Summary
 
 Interactive update page that ties department work to the three-bucket strategic framework:
 
