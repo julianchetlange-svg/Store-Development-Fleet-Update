@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="logo.png">
 <title>Store Development, Facilities &amp; Fleet — Update Summary</title>
 <style>
   :root{
-    --navy:#0f1f45; --bg:#f3f6f9; --card:#fff; --ink:#1c2433; --muted:#5b6678; --line:#e3e8ef;
+    --navy:#0f1f45; --mc-green:#0D5540; --mc-yellow:#FFE901; --bg:#f3f6f9; --card:#fff; --ink:#1c2433; --muted:#5b6678; --line:#e3e8ef;
     --b1:#0e7c93; --b1-soft:#e3f3f6;
     --b2:#0d6b5c; --b2-soft:#e2f2ee;
     --b3:#7c3aed; --b3-soft:#f0e9fd;
@@ -14,14 +15,16 @@
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
-  header{background:var(--navy);color:#fff;padding:22px 32px}
+  header{background:var(--mc-green);color:#fff;padding:18px 32px;border-bottom:5px solid var(--mc-yellow)}
+  .brand{display:flex;align-items:center;gap:18px}
+  .brand img{height:52px;width:auto;display:block}
   .hdr{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
-  .eyebrow{letter-spacing:.28em;font-size:12px;font-weight:700;opacity:.75;text-transform:uppercase}
-  h1{margin:4px 0 0;font-size:24px;font-weight:600}
+  .eyebrow{letter-spacing:.28em;font-size:12px;font-weight:700;opacity:.9;text-transform:uppercase;color:#fff}
+  h1{margin:4px 0 0;font-size:24px;font-weight:700;color:var(--mc-yellow)}
   .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   .toggle{display:flex;background:rgba(255,255,255,.12);border-radius:8px;padding:3px}
   .toggle button{border:0;background:transparent;color:#fff;padding:7px 14px;border-radius:6px;cursor:pointer;font-size:14px}
-  .toggle button.on{background:#fff;color:var(--navy);font-weight:600}
+  .toggle button.on{background:var(--mc-yellow);color:var(--mc-green);font-weight:600}
   select,.btn{font:inherit;font-size:14px;padding:7px 10px;border-radius:7px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;cursor:pointer}
   select option{color:var(--ink)}
   main{max-width:1200px;margin:0 auto;padding:24px 32px 60px}
@@ -105,7 +108,7 @@
     .itop{flex-wrap:wrap}
   }
   @media print{
-    header{background:#fff;color:var(--navy);border-bottom:2px solid var(--navy)}
+    header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     .controls,.filters{display:none}
     .item .idetail{display:block!important}
     .item,.bucket,.panel,.kpi{break-inside:avoid;box-shadow:none;border:1px solid var(--line)}
@@ -135,9 +138,12 @@
 
 <header>
   <div class="hdr">
-    <div>
-      <div class="eyebrow" id="deptName"></div>
-      <h1 id="reportTitle">Update Summary</h1>
+    <div class="brand">
+      <img src="logo.png" alt="McCoy's Building Supply">
+      <div>
+        <div class="eyebrow" id="deptName"></div>
+        <h1 id="reportTitle">Update Summary</h1>
+      </div>
     </div>
     <div class="controls">
       <select id="periodSelect" aria-label="Reporting period"></select>
