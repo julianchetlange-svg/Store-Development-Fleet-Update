@@ -207,7 +207,7 @@ const REPORTS = [
     ],
 
     health:[
-      { bucket:1, metric:"PM compliance (overdue)", current:"2.40%", detail:"35 of 1,458 assets as of 11/16 (up from 1.92%) · 9 without an open WO · 1 critical (>90 days)" },
+      { bucket:1, metric:"PM compliance (overdue)", current:"1.78%", detail:"26 of 1,458 assets as of 11/16 (down from 1.92%) · all have open WOs · 1 critical (>90 days)" },
       { bucket:1, metric:"Registration & inspection", current:"3.1% · 8 overdue", detail:"23 of 739 assets due in 30 days or less as of 11/11 (down from 7.5% on 11/04) · 8 overdue: 2 registration, 6 inspections (down 38.5% from 13 on 07/29)" },
       { bucket:1, metric:"Fleet — average work order age", current:"11.0 days", detail:"90-day change: ▼ 2.9 days (−21%) from 13.9 on 8/25 · prior week 10.7 · as of 11/16" },
       { bucket:1, metric:"Facility — average work order age", current:"21.1 days", detail:"90-day change: ▼ 5.2 days (−20%) from 26.3 on 8/21 · prior week 23.4 (first drop after 3 weeks up) · as of 11/16" },
@@ -244,8 +244,8 @@ const REPORTS = [
       { bucket:1, section:"Fleet Data Analytics", title:"Fleet Compliance — PM, Registration & Inspection", status:"Live",
         notes:[
           "PM Compliance — agent automated; running great, still hovering around 2–3%; below 2% the past 2 weeks",
-          "PM (11/16): 35 of 1,458 assets overdue (2.40%), up from 28 (1.92%) on 11/09 — back above 2%; down from 73 (4.79%) on 05/19",
-          "PM: 9 of the 35 overdue assets have no open work order (0 last week); 1 critical (>90 days) — 12' Slide Flatbed 699008 at 450 McCoys Millworks, now 135 days overdue",
+          "PM (11/16): 26 of 1,458 assets overdue (1.78%), down from 28 (1.92%) on 11/09; down from 73 (4.79%) on 05/19",
+          "PM: all 26 overdue assets have an open work order; 1 critical (>90 days) — 12' Slide Flatbed 699008 at 450 McCoys Millworks, now 135 days overdue",
           "Registration & Inspection — agent automated",
           "Reg & Insp (11/11): 23 of 739 assets need attention (due in 30 days or less) — 3.1%, down from 55 (7.5%) on 11/04",
           "Reg & Insp: 8 assets overdue (2 registration, 6 inspections) — down from 22 on 11/04 and 13 on 07/29 (−38.5%); 0 data gaps"
