@@ -38,7 +38,8 @@ Instructions for each scheduled refresh (Mon 10 AM, Wed 7 AM, Fri 7 AM Central) 
 - Note when a figure comes from a Saturday or a partial period.
 - Keep the newest report's header date automatic (it shows the viewing date).
 - Merged items stay merged: PM + Registration & Inspection; Facility + Fleet WO age;
-  Store + Distribution forklift utilization.
+  Store + Distribution forklift utilization; Doors, 508 The Retreat and Rio Truss live inside
+  Project Summary & Progress (keep their bullets when refreshing that item).
 
 ## Not covered by a repo
 
