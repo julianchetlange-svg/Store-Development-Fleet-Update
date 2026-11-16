@@ -130,6 +130,7 @@
  - status:  "Complete" | "Live" | "In Progress" | "Waiting" | "Upcoming" | "No Activity"
  - notes:   the bullets from your report for that item
  - charts:  optional [{ title, unit, yMax (optional, same on paired charts), points:[["8/11",14.0], ...] }] — small trend lines
+ - personnel: list of personnel updates (shown under the follow-ups)
  - health:  { bucket, metric, current, detail } rows for the metrics table
  - link:    optional URL to a dashboard / tool
    (or links: [{ label, url, asOf }] for more than one)
@@ -171,9 +172,10 @@
       </table>
     </div>
 
-    <h2>Follow-ups &amp; dates</h2>
+    <h2>Follow-ups, personnel &amp; dates</h2>
     <section class="twocol">
-      <div class="panel"><h3>Decisions / Follow-Ups Needed / Personnel Updates</h3><ul id="asks"></ul></div>
+      <div class="panel"><h3>Decisions / Follow-Ups Needed</h3><ul id="asks"></ul>
+        <h3 style="margin-top:16px">Personnel Updates</h3><ul id="personnel"></ul></div>
       <div class="panel"><h3>Upcoming dates</h3><ul id="dates"></ul></div>
     </section>
 
@@ -234,8 +236,14 @@ const REPORTS = [
       "Distribution: follow up with Derwin to see if he wants to make moves on assets",
       "Forklift Utilization: waiting for Ron to review and help move out final outstanding assets",
       "508 The Retreat: lift station work still up in the air",
+      "508 The Retreat: potential new landscape company — Sun Grow",
       "Pending contractor meetings: 082, 103, 113",
       "Store pickup reallocation proposal: approve redeploying 13 pickups for 2027 ($715K CAPEX avoided)"
+    ],
+
+    personnel:[
+      "Alex Reyes — staying out 4 more weeks; his son is having a tough time with chemotherapy",
+      "Jeff / Kyle — making great progress implementing AI into the design process"
     ],
 
     dates:[
@@ -655,6 +663,7 @@ function render(){
   }).join("") || `<tr><td colspan="4" style="color:var(--muted)">No metrics in this bucket.</td></tr>`;
 
   $("asks").innerHTML = list(r.asks, "None this period");
+  $("personnel").innerHTML = list(r.personnel, "None this period");
   $("dates").innerHTML = list(r.dates, "—");
 
   const tot = items.length || 1;
