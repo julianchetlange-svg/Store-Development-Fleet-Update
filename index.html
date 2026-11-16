@@ -62,6 +62,9 @@
   .panel li{margin:5px 0;font-size:14px}
 
   .mixwrap{background:var(--card);border-radius:4px;padding:16px 18px;box-shadow:0 1px 4px rgba(15,31,69,.08)}
+  .mixlabels{display:flex;margin-bottom:6px}
+  .mixlabels div{font-size:13px;color:var(--muted);padding-left:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mixlabels b{font-size:16px;color:var(--ink)}
   .mixbar{display:flex;height:24px;border-radius:4px;overflow:hidden;background:var(--line)}
   .mixbar div{display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden}
 
@@ -182,7 +185,7 @@
     </section>
 
     <h2>Items by bucket</h2>
-    <div class="mixwrap"><div class="mixbar" id="mix"></div></div>
+    <div class="mixwrap"><div class="mixlabels" id="mixLabels"></div><div class="mixbar" id="mix"></div></div>
 
     <h2>Work by strategic bucket</h2>
     <div class="filters" id="filters"></div>
@@ -674,10 +677,11 @@ function render(){
   $("dates").innerHTML = list(r.dates, "—");
 
   const tot = items.length || 1;
-  $("mix").innerHTML = [1,2,3].map(n => {
-    const c = items.filter(i => i.bucket === n).length, v = Math.round(c / tot * 100);
-    return `<div style="width:${v}%;background:${CONFIG.buckets[n].color}" title="Bucket ${n}: ${c} items">${v>=8?`${n} · ${c} items`:""}</div>`;
-  }).join("");
+  const mix = [1,2,3].map(n => { const c = items.filter(i => i.bucket === n).length; return { n, c, pct: c / tot * 100 }; });
+  $("mixLabels").innerHTML = mix.map(m =>
+    `<div style="width:${m.pct}%"><b>${m.pct.toFixed(1)}%</b> · Bucket ${m.n} · ${m.c} items</div>`).join("");
+  $("mix").innerHTML = mix.map(m =>
+    `<div style="width:${m.pct}%;background:${CONFIG.buckets[m.n].color}" title="Bucket ${m.n}: ${m.c} of ${items.length} items (${m.pct.toFixed(1)}%)">${m.pct>=8?`${m.n} · ${m.c} items`:""}</div>`).join("");
 
   // Filters
   const cnt = s => items.filter(i => i.status === s).length;
