@@ -1,0 +1,180 @@
+{
+  "lastChecked": "2026-11-16T12:55:00-06:00",
+  "sources": [
+    {
+      "repo": "julianchetlange-svg/PM-Compliance-Dashboard",
+      "page": "https://julianchetlange-svg.github.io/PM-Compliance-Dashboard/",
+      "item": "Fleet Compliance — PM, Registration & Inspection",
+      "bucket": 1,
+      "lastCommit": "e1a26bb5ea2d301a0834ff576143ff7d32014b80"
+    },
+    {
+      "repo": "julianchetlange-svg/Fleet-Registration-and-Inspection",
+      "page": "https://julianchetlange-svg.github.io/Fleet-Registration-and-Inspection/",
+      "item": "Fleet Compliance — PM, Registration & Inspection",
+      "bucket": 1,
+      "lastCommit": "03aaa9c1f7a33c5be6aa71a12c1f1bd776e9b3c6"
+    },
+    {
+      "repo": "julianchetlange-svg/Facilities-WO-Follow-Up-Report",
+      "page": "https://julianchetlange-svg.github.io/Facilities-WO-Follow-Up-Report/",
+      "item": "Average Work Order Age — Facility & Fleet",
+      "bucket": 1,
+      "lastCommit": "ccb3c1fc791a0b6ec7dfb44f77ec2edd24a98bbe"
+    },
+    {
+      "repo": "julianchetlange-svg/Fleet-WO-Follow-Up",
+      "page": "https://julianchetlange-svg.github.io/Fleet-WO-Follow-Up/",
+      "item": "Average Work Order Age — Facility & Fleet",
+      "bucket": 1,
+      "lastCommit": "0175af8905c86c8ab6edf27e00a9cbdb214b1596"
+    },
+    {
+      "repo": "julianchetlange-svg/Agent-Health-Dashboard",
+      "page": "https://julianchetlange-svg.github.io/Agent-Health-Dashboard/",
+      "item": "Agent Health",
+      "bucket": 1,
+      "lastCommit": "aab4e35d040a12cdb1ebeaa6253d4eeb27e25d09"
+    },
+    {
+      "repo": "julianchetlange-svg/Daily-DVIR-Analysis",
+      "page": "https://julianchetlange-svg.github.io/Daily-DVIR-Analysis/",
+      "item": "Daily DVIR Analysis",
+      "bucket": 1,
+      "lastCommit": "5e82ece375653beab0e5ac724590cdb73449a801"
+    },
+    {
+      "repo": "julianchetlange-svg/Fleet-Out-of-Service-Tracking",
+      "page": "https://julianchetlange-svg.github.io/Fleet-Out-of-Service-Tracking/",
+      "item": "Fleet Out of Service (over 3 days)",
+      "bucket": 1,
+      "lastCommit": "00d5b92be5ccf0d88eb6981987edaf1effd4cc70"
+    },
+    {
+      "repo": "julianchetlange-svg/Current-Fleet-Assets",
+      "page": "https://julianchetlange-svg.github.io/Current-Fleet-Assets/",
+      "item": "Current Fleet Assets",
+      "bucket": 1,
+      "lastCommit": "2c3763640cb263cc704bbc23a79468c771e7123d"
+    },
+    {
+      "repo": "julianchetlange-svg/Project-Summary-Progress",
+      "page": "https://julianchetlange-svg.github.io/Project-Summary-Progress/",
+      "item": "Project Summary & Progress — 2026 Program",
+      "bucket": 1,
+      "lastCommit": "74111cb9db3032be4204554bcf8553bcbe0a015c"
+    },
+    {
+      "repo": "julianchetlange-svg/Fleet-Utilization-TWRE",
+      "page": "https://julianchetlange-svg.github.io/Fleet-Utilization-TWRE/",
+      "item": "Truck Utilization",
+      "bucket": 2,
+      "lastCommit": "058ee3eb60a61f2feb7666e462615c580fc304d1"
+    },
+    {
+      "repo": "julianchetlange-svg/Forklift-Utilization-Report",
+      "page": "https://julianchetlange-svg.github.io/Forklift-Utilization-Report/",
+      "item": "Forklift Utilization — Store & Distribution",
+      "bucket": 2,
+      "lastCommit": "0e5ba75b75c290f3f20b9dd4b952f2730ac89022"
+    },
+    {
+      "repo": "julianchetlange-svg/Distribution-Forklift-Utilization-",
+      "page": "https://julianchetlange-svg.github.io/Distribution-Forklift-Utilization-/",
+      "item": "Forklift Utilization — Store & Distribution",
+      "bucket": 2,
+      "lastCommit": "ba115f3b852a5d2852f96176dc4911a8ef5abf91"
+    },
+    {
+      "repo": "julianchetlange-svg/Fleet-CMP-HOUR-Analysis",
+      "page": "https://julianchetlange-svg.github.io/Fleet-CMP-HOUR-Analysis/",
+      "item": "Fleet Cost per Mile / Hour (Actual)",
+      "bucket": 2,
+      "lastCommit": "bc1952b0fdb4920b6f8ba944e406a9e5ff21079d"
+    },
+    {
+      "repo": "julianchetlange-svg/2027-Fleet-Forecast",
+      "page": "https://julianchetlange-svg.github.io/2027-Fleet-Forecast/",
+      "item": "2027 Fleet Forecast",
+      "bucket": 2,
+      "lastCommit": "c3ad6f65f2dfed68b3b0d967290f7499153c91c7"
+    },
+    {
+      "repo": "julianchetlange-svg/CAPEX-Budget-Planning",
+      "page": "https://julianchetlange-svg.github.io/CAPEX-Budget-Planning/",
+      "item": "2027 CAPEX Budget Planning",
+      "bucket": 2,
+      "lastCommit": "f3b5ed2297003ff1a240d91ff368ec50afce5bd8"
+    },
+    {
+      "repo": "julianchetlange-svg/MTD-Fuel-Trends",
+      "page": "https://julianchetlange-svg.github.io/MTD-Fuel-Trends/",
+      "item": "Fuel Forecast & Trends",
+      "bucket": 2,
+      "lastCommit": "6065d5c0d0a2fd4f0aade0b48a2c1a245a3bd033"
+    },
+    {
+      "repo": "julianchetlange-svg/Store-Pickup-Reallocation",
+      "page": "https://julianchetlange-svg.github.io/Store-Pickup-Reallocation/",
+      "item": "Store-to-Door Pickup Reallocation — 2027 Proposal",
+      "bucket": 2,
+      "lastCommit": "46d0f75d80d79933ab56e02e02046e3ccc38e4c2"
+    },
+    {
+      "repo": "julianchetlange-svg/WEX-Fuel-Rebate",
+      "page": "https://julianchetlange-svg.github.io/WEX-Fuel-Rebate/",
+      "item": "WEX Fuel Rebate",
+      "bucket": 2,
+      "lastCommit": "3fecb69ffc1cee47f9b89d1c0c7c053624d7fd44"
+    },
+    {
+      "repo": "julianchetlange-svg/355CD-Region-5-Analysis",
+      "page": "https://julianchetlange-svg.github.io/355CD-Region-5-Analysis/",
+      "item": "355CD / Region 5 Fleet Analysis",
+      "bucket": 2,
+      "lastCommit": "45d4239302d777486fb8168084a4a66e32bffd75"
+    },
+    {
+      "repo": "julianchetlange-svg/Flat-Rate-Charges",
+      "page": "https://julianchetlange-svg.github.io/Flat-Rate-Charges/",
+      "item": "2027 Flat Rate (work in progress)",
+      "bucket": 2,
+      "lastCommit": "7984177c3decd5dfb03c758c1d7baa0a5ff92cd3"
+    },
+    {
+      "repo": "julianchetlange-svg/Facility-Spend-Dashboard",
+      "page": "https://julianchetlange-svg.github.io/Facility-Spend-Dashboard/",
+      "item": "Facility Spend — YTD October 2026",
+      "bucket": 3,
+      "lastCommit": "563b9af51fddfe825463c3b843a83e222a0b1ff4"
+    },
+    {
+      "repo": "julianchetlange-svg/Fleet-Spend-Report-YOY",
+      "page": "https://julianchetlange-svg.github.io/Fleet-Spend-Report-YOY/",
+      "item": "Fleet Spend — YTD September 2026 (YOY)",
+      "bucket": 3,
+      "lastCommit": "3e17c5e6b2108647a135d16afdef460f1a40ad91"
+    },
+    {
+      "repo": "jeff-sasquatch/Canyon-Lake-Schedule",
+      "page": "https://jeff-sasquatch.github.io/Canyon-Lake-Schedule/",
+      "item": "Store 122 — Canyon Lake (New Store)",
+      "bucket": 3,
+      "lastCommit": "b44282cbf59e4ac74431b2e11a69c1480963f808"
+    },
+    {
+      "repo": "julianchetlange-svg/index",
+      "page": "https://julianchetlange-svg.github.io/index/",
+      "item": "Store 123 — Springtown (New Store)",
+      "bucket": 3,
+      "lastCommit": "a3bbcf5c0acccd0eb08b268a2462e465143c2a2a"
+    },
+    {
+      "repo": "julianchetlange-svg/Fleet-Lifecycle-Budget",
+      "page": "https://julianchetlange-svg.github.io/Fleet-Lifecycle-Budget/",
+      "item": "Fleet Lifecycle & Budget Forecasting Tool",
+      "bucket": 3,
+      "lastCommit": "acb1b2c336ded0c8dff6350d2db9575c3ba54bba"
+    }
+  ]
+}

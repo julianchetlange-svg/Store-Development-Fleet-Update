@@ -207,16 +207,16 @@ const REPORTS = [
     ],
 
     health:[
-      { bucket:1, metric:"PM compliance (overdue)", current:"1.92%", detail:"28 of 1,458 assets as of 11/09 · all have open WOs · 1 critical (>90 days)" },
+      { bucket:1, metric:"PM compliance (overdue)", current:"2.40%", detail:"35 of 1,458 assets as of 11/16 (up from 1.92%) · 9 without an open WO · 1 critical (>90 days)" },
       { bucket:1, metric:"Registration & inspection", current:"3.1% · 8 overdue", detail:"23 of 739 assets due in 30 days or less as of 11/11 (down from 7.5% on 11/04) · 8 overdue: 2 registration, 6 inspections (down 38.5% from 13 on 07/29)" },
-      { bucket:1, metric:"Fleet — average work order age", current:"10.7 days", detail:"90-day change: ▼ 3.3 days (−24%) from 14.0 on 8/11 · prior week 11.6 · as of 11/09" },
-      { bucket:1, metric:"Facility — average work order age", current:"23.4 days", detail:"90-day change: ▼ 6.8 days (−23%) from 30.2 on 8/11 · prior week 20.3 (up 3 weeks in a row) · as of 11/09" },
+      { bucket:1, metric:"Fleet — average work order age", current:"11.0 days", detail:"90-day change: ▼ 2.9 days (−21%) from 13.9 on 8/25 · prior week 10.7 · as of 11/16" },
+      { bucket:1, metric:"Facility — average work order age", current:"21.1 days", detail:"90-day change: ▼ 5.2 days (−20%) from 26.3 on 8/21 · prior week 23.4 (first drop after 3 weeks up) · as of 11/16" },
       { bucket:3, metric:"Fleet expenses YTD (through September)", current:"$12.015M", detail:"Down $1.28M vs 2025 · maintenance categories all at or below 2025 · fuel +$1.27M (+20.3%) · tires +11.9%" },
       { bucket:3, metric:"Facilities maintenance spend YTD (excl. CAPEX & PM)", current:"$3.207M", detail:"Down $962K (−23.1%) vs 2025 YTD ($4.169M) · October −4.2% vs prior year · PM $889K YTD (+7.0%) · through October" },
       { bucket:2, metric:"Truck utilization (fleet average)", current:"27.0%", detail:"Target ≥40% · 0 of 94 stores on target, 8 watch · 9 non-pickup assets under 10% (removal candidates) · Jan–Oct" },
       { bucket:2, metric:"Forklift utilization (hours per day)", current:"Stores 3.329 · DCs 3.51", detail:"412 store + 51 DC units · 26 removed to date ($323,742/yr) · Round 2: $266,332/yr identified · DC: $54,946/yr recommended · through 10/31" },
       { bucket:2, metric:"Fleet all-in cost per mile", current:"$2.79", detail:"Last 3 months $2.86 · delivery fleet $2.19 · forklift $17.07/hr · TMFL $55.17/hr · Jan–Oct total $31.41M" },
-      { bucket:1, metric:"Agent health", current:"8 of 11 healthy", detail:"3 late: BMS Alert Report, DVIR master report, Report hub date updater · 0 failed · ~44 hrs labor saved · as of 11/16 6:20 AM" },
+      { bucket:1, metric:"Agent health", current:"10 of 11 healthy", detail:"1 late: Report hub date updater · 0 failed · ~46 hrs labor saved · as of 11/16 12:14 PM" },
       { bucket:2, metric:"2026 fuel (full-year estimate)", current:"$9.52M", detail:"vs $7.20M budget (+$2.31M) · November MTD $5.39/gal · 2027 forecast $8.77M · as of 11/12" },
       { bucket:1, metric:"DVIR inspection completion", current:"Forklifts 68.6% · Vehicles 27.7% · Trailers 16.6%", detail:"Saturday 11/14 inspections · 24 defects on 20 assets → 7 new WOs, 11 to review, 5 already covered" },
       { bucket:1, metric:"Fleet out of service (over 3 days)", current:"3 assets", detail:"Longest 27 days (754005, Cleveland) · 3 locations · all with JRS Road Service · as of 11/16" },
@@ -244,14 +244,14 @@ const REPORTS = [
       { bucket:1, section:"Fleet Data Analytics", title:"Fleet Compliance — PM, Registration & Inspection", status:"Live",
         notes:[
           "PM Compliance — agent automated; running great, still hovering around 2–3%; below 2% the past 2 weeks",
-          "PM (11/09): 28 of 1,458 assets overdue (1.92%), up from 24 (1.65%) on 11/02; down from 73 (4.79%) on 05/19",
-          "PM: all 28 overdue assets have an open work order; 1 critical (>90 days) — 12' Slide Flatbed 699008 at 450 McCoys Millworks, 128 days overdue (WO 774564)",
+          "PM (11/16): 35 of 1,458 assets overdue (2.40%), up from 28 (1.92%) on 11/09 — back above 2%; down from 73 (4.79%) on 05/19",
+          "PM: 9 of the 35 overdue assets have no open work order (0 last week); 1 critical (>90 days) — 12' Slide Flatbed 699008 at 450 McCoys Millworks, now 135 days overdue",
           "Registration & Inspection — agent automated",
           "Reg & Insp (11/11): 23 of 739 assets need attention (due in 30 days or less) — 3.1%, down from 55 (7.5%) on 11/04",
           "Reg & Insp: 8 assets overdue (2 registration, 6 inspections) — down from 22 on 11/04 and 13 on 07/29 (−38.5%); 0 data gaps"
         ],
         links:[
-          { label:"PM Compliance Dashboard", url:"https://julianchetlange-svg.github.io/PM-Compliance-Dashboard/", asOf:"data as of 11/09/2026" },
+          { label:"PM Compliance Dashboard", url:"https://julianchetlange-svg.github.io/PM-Compliance-Dashboard/", asOf:"data as of 11/16/2026" },
           { label:"Registration & Inspection Dashboard", url:"https://julianchetlange-svg.github.io/Fleet-Registration-and-Inspection/", asOf:"data as of 11/11/2026" }
         ] },
       { bucket:1, section:"Fleet Data Analytics", title:"Average Work Order Age — Facility & Fleet", status:"In Progress",
@@ -259,20 +259,20 @@ const REPORTS = [
           "Work order follow-up in place; moved several vendors to auto dispatch",
           "Automated process with Fexa underway for follow-up emails · Agent automated",
           "Facility team continues to make improvements on work order management",
-          "Fleet (11/09): average age 10.7 days, down from 11.6 on 11/02 and 14.2 on 07/09 · 513 open (455 prior week) · 36 over 30 days (39 prior) · none over 90 · oldest 81 days",
-          "Facility (11/09): average age 23.4 days, up from 20.3 on 11/02 and 15.5 on 10/19; down from 32.6 on 05/25 · 166 open (199 prior week) · 23 over 30 days (30 prior) · 6 over 90 · oldest 191 days"
+          "Fleet (11/16): average age 11.0 days, up from 10.7 on 11/09; down from 14.2 on 07/09 · 494 open (513 prior week) · 42 over 30 days (36 prior) · none over 90 · oldest 88 days",
+          "Facility (11/16): average age 21.1 days, down from 23.4 on 11/09 — ends a 3-week rise; down from 32.6 on 05/25 · 161 open (166 prior week) · 51 over 30 days (23 prior) · 4 over 90 · oldest 198 days"
         ],
         charts:[
           { title:"Fleet — average work order age, last 90 days", unit:"days", yMax:40,
-            points:[["8/11",14.0],["8/17",13.2],["8/25",13.9],["9/7",12.4],["9/16",11.4],["9/22",12.0],["9/28",11.6],
-                    ["10/6",11.0],["10/13",10.1],["10/19",10.8],["10/26",11.1],["11/2",11.6],["11/9",10.7]] },
+            points:[["8/25",13.9],["9/7",12.4],["9/16",11.4],["9/22",12.0],["9/28",11.6],
+                    ["10/6",11.0],["10/13",10.1],["10/19",10.8],["10/26",11.1],["11/2",11.6],["11/9",10.7],["11/16",11.0]] },
           { title:"Facility — average work order age, last 90 days", unit:"days", yMax:40,
-            points:[["8/11",30.2],["8/17",30.8],["8/21",26.3],["8/27",26.9],["9/7",27.1],["9/16",25.1],["9/22",21.7],
-                    ["9/28",23.2],["10/5",19.7],["10/13",25.5],["10/19",15.5],["10/26",17.7],["11/2",20.3],["11/9",23.4]] }
+            points:[["8/21",26.3],["8/27",26.9],["9/7",27.1],["9/16",25.1],["9/22",21.7],
+                    ["9/28",23.2],["10/5",19.7],["10/13",25.5],["10/19",15.5],["10/26",17.7],["11/2",20.3],["11/9",23.4],["11/16",21.1]] }
         ],
         links:[
-          { label:"Facilities WO Follow-Up Report", url:"https://julianchetlange-svg.github.io/Facilities-WO-Follow-Up-Report/", asOf:"data as of 11/09/2026" },
-          { label:"Fleet WO Follow-Up Report", url:"https://julianchetlange-svg.github.io/Fleet-WO-Follow-Up/", asOf:"data as of 11/09/2026" }
+          { label:"Facilities WO Follow-Up Report", url:"https://julianchetlange-svg.github.io/Facilities-WO-Follow-Up-Report/", asOf:"data as of 11/16/2026" },
+          { label:"Fleet WO Follow-Up Report", url:"https://julianchetlange-svg.github.io/Fleet-WO-Follow-Up/", asOf:"data as of 11/16/2026" }
         ] },
       { bucket:1, section:"Fleet Data Analytics", title:"Daily DVIR Analysis", status:"Live",
         notes:[
@@ -371,11 +371,11 @@ const REPORTS = [
       { bucket:1, section:"Agents", title:"Agent Health", status:"Live",
         notes:[
           "Monitors 11 agents — checked at 6 AM, 10:30 AM and 12 PM Central",
-          "As of 11/16 6:20 AM CT: 8 healthy · 3 late or silent · 0 failed",
-          "Late: BMS Alert Report (last run 3 days ago; expected 9:00 AM Mon–Sat) · DVIR master report (3 days; daily) · Report hub date updater (2 days; daily)",
-          "Estimated labor saved: 44 hours (87 runs × 30 minutes)"
+          "As of 11/16 12:14 PM CT: 10 healthy · 1 late · 0 failed",
+          "Late: Report hub date updater (last run 2 days ago; expected daily) · BMS Alert Report and DVIR master report recovered this morning",
+          "Estimated labor saved: 46 hours (92 runs × 30 minutes)"
         ],
-        links:[{ label:"Agent Health Dashboard", url:"https://julianchetlange-svg.github.io/Agent-Health-Dashboard/", asOf:"status as of 11/16/2026 6:20 AM CT" }] },
+        links:[{ label:"Agent Health Dashboard", url:"https://julianchetlange-svg.github.io/Agent-Health-Dashboard/", asOf:"status as of 11/16/2026 12:14 PM CT" }] },
       { bucket:1, section:"Agents", title:"Upcoming Agents", status:"Upcoming",
         notes:["Forklift Utilization — Claude — can possibly move to weekly",
                "Fleet Lifecycle & Budgeting — Claude — Monthly",
@@ -408,13 +408,13 @@ const REPORTS = [
 
       { bucket:2, section:"Fleet Data Analytics", title:"WEX Fuel Rebate", status:"Live",
         notes:[
-          "Rebate analysis of WEX fuel card spend, Jan–Sep 2026 (32,271 transactions, 107 locations)",
-          "Total rebate YTD $64,953 — 1.30% of $4.996M eligible spend (5.89¢ per gallon)",
-          "Consumption (volume) rebate $54,961 at the top 1.10% tier · early-pay rebate $9,993 at 0.20%",
-          "All 9 months reached the top volume tier (110,000+ gallons) · tightest was January at 114,809 gallons (4.2% above the threshold)",
+          "Rebate analysis of WEX fuel card spend, Jan–Oct 2026 (35,861 transactions, 107 locations)",
+          "Total rebate YTD $73,789 — 1.30% of $5.676M eligible spend · October added $8,836",
+          "Consumption (volume) rebate $62,437 at the top 1.10% tier · early-pay rebate $11,352 at 0.20%",
+          "All 10 months reached the top volume tier (110,000+ gallons; avg 122,513/month) · tightest was January at 114,809 gallons (4.2% above the threshold)",
           "September was the highest month: $9,002 rebate on $692K spend"
         ],
-        links:[{ label:"WEX Fuel Rebate", url:"https://julianchetlange-svg.github.io/WEX-Fuel-Rebate/", asOf:"data Jan–Sep 2026, built 11/03/2026" }] },
+        links:[{ label:"WEX Fuel Rebate", url:"https://julianchetlange-svg.github.io/WEX-Fuel-Rebate/", asOf:"data Jan–Oct 2026, updated 11/16/2026" }] },
 
       /* ---------- Bucket 3: Revenue & Customer ---------- */
       { bucket:3, section:"CAPEX & Budget Planning", title:"2026 CAPEX Budget", status:"In Progress",
@@ -594,7 +594,7 @@ function chartHTML(c){
       ${grid}${xl}
       <path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
       <circle cx="${x(n-1)}" cy="${y(last[1])}" r="4" fill="var(--accent)" stroke="#fff" stroke-width="2"/>
-      <text x="${x(n-1)+8}" y="${y(last[1])+4}" font-size="12" font-weight="600" fill="#1c2433">${last[1]}</text>
+      <text x="${x(n-1)+8}" y="${y(last[1])+4}" font-size="12" font-weight="600" fill="#1c2433">${last[1].toFixed(1)}</text>
       <line class="xh" y1="${T}" y2="${H-B}" stroke="#8a94a6" stroke-width="1" stroke-dasharray="3,3" style="display:none"/>
       <circle class="hd" r="4" fill="var(--accent)" stroke="#fff" stroke-width="2" style="display:none"/>
       <rect x="${L}" y="0" width="${W-L-R}" height="${H}" fill="transparent" class="hit"/>
