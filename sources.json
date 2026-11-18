@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-11-16T13:00:00-06:00",
+  "lastChecked": "2026-11-18T06:36:57-06:00",
   "sources": [
     {
       "repo": "julianchetlange-svg/PM-Compliance-Dashboard",
@@ -34,28 +34,28 @@
       "page": "https://julianchetlange-svg.github.io/Agent-Health-Dashboard/",
       "item": "Agent Health",
       "bucket": 1,
-      "lastCommit": "aab4e35d040a12cdb1ebeaa6253d4eeb27e25d09"
+      "lastCommit": "629dc7b292dbbd3102abae13ae616e3a956e0ca5"
     },
     {
       "repo": "julianchetlange-svg/Daily-DVIR-Analysis",
       "page": "https://julianchetlange-svg.github.io/Daily-DVIR-Analysis/",
       "item": "Daily DVIR Analysis",
       "bucket": 1,
-      "lastCommit": "5e82ece375653beab0e5ac724590cdb73449a801"
+      "lastCommit": "33f0f93be8faf03c81babb621d517e12a5f6b63f"
     },
     {
       "repo": "julianchetlange-svg/Fleet-Out-of-Service-Tracking",
       "page": "https://julianchetlange-svg.github.io/Fleet-Out-of-Service-Tracking/",
       "item": "Fleet Out of Service (over 3 days)",
       "bucket": 1,
-      "lastCommit": "00d5b92be5ccf0d88eb6981987edaf1effd4cc70"
+      "lastCommit": "69a8c7506ba8fb161dbf76363fc003ba12ee0b11"
     },
     {
       "repo": "julianchetlange-svg/Current-Fleet-Assets",
       "page": "https://julianchetlange-svg.github.io/Current-Fleet-Assets/",
       "item": "Current Fleet Assets",
       "bucket": 1,
-      "lastCommit": "2c3763640cb263cc704bbc23a79468c771e7123d"
+      "lastCommit": "a04d7c16b1ad2e522774c9781fd263e23fa53b0e"
     },
     {
       "repo": "julianchetlange-svg/Project-Summary-Progress",
@@ -90,14 +90,14 @@
       "page": "https://julianchetlange-svg.github.io/Fleet-CMP-HOUR-Analysis/",
       "item": "Fleet Cost per Mile / Hour (Actual)",
       "bucket": 2,
-      "lastCommit": "bc1952b0fdb4920b6f8ba944e406a9e5ff21079d"
+      "lastCommit": "81edcb868b1848155f9aecee23c44e665cb0df24"
     },
     {
       "repo": "julianchetlange-svg/2027-Fleet-Forecast",
       "page": "https://julianchetlange-svg.github.io/2027-Fleet-Forecast/",
       "item": "2027 Fleet Forecast",
       "bucket": 2,
-      "lastCommit": "c3ad6f65f2dfed68b3b0d967290f7499153c91c7"
+      "lastCommit": "301f00f4e0b4aee7a9c68f467a8584c1ffccde59"
     },
     {
       "repo": "julianchetlange-svg/CAPEX-Budget-Planning",
@@ -118,7 +118,7 @@
       "page": "https://julianchetlange-svg.github.io/Store-Pickup-Reallocation/",
       "item": "Store-to-Door Pickup Reallocation — 2027 Proposal",
       "bucket": 2,
-      "lastCommit": "46d0f75d80d79933ab56e02e02046e3ccc38e4c2"
+      "lastCommit": "429cf54eee2d5b6a89dfc2e3f7da70a8a7cc0906"
     },
     {
       "repo": "julianchetlange-svg/WEX-Fuel-Rebate",
@@ -139,7 +139,7 @@
       "page": "https://julianchetlange-svg.github.io/Flat-Rate-Charges/",
       "item": "2027 Flat Rate (work in progress)",
       "bucket": 2,
-      "lastCommit": "7984177c3decd5dfb03c758c1d7baa0a5ff92cd3"
+      "lastCommit": "d7868ee530ef71bcd731931432f8db877fed42f2"
     },
     {
       "repo": "julianchetlange-svg/Facility-Spend-Dashboard",
