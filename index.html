@@ -229,10 +229,10 @@ const REPORTS = [
       { bucket:2, metric:"Truck utilization (fleet average)", current:"27.0%", detail:"Target ≥40% · 0 of 94 stores on target, 8 watch · 9 non-pickup assets under 10% (removal candidates) · Jan–Oct" },
       { bucket:2, metric:"Forklift utilization (hours per day)", current:"Stores 3.329 · DCs 3.51", detail:"412 store + 51 DC units · 26 removed to date ($323,742/yr) · Round 2: $266,332/yr identified · DC: $54,946/yr recommended · through 10/31" },
       { bucket:2, metric:"Fleet all-in cost per mile", current:"$2.77", detail:"Last 3 months $2.86 · delivery fleet $2.18 · forklift $17.10/hr · TMFL $54.97/hr · Jan–Oct total $32.09M (actual book depreciation)" },
-      { bucket:1, metric:"Agent health", current:"11 of 11 healthy", detail:"0 late · 0 failed · 0 no runs yet · ~56 hrs labor saved (112 runs) · as of 11/20 6:16 AM" },
+      { bucket:1, metric:"Agent health", current:"8 of 11 healthy", detail:"3 late (DVIR master report, Report hub date updater, MTD Fuel Trends input quiet) · 0 failed · ~62 hrs labor saved (123 runs) · as of 11/23 6:16 AM" },
       { bucket:2, metric:"2026 fuel (full-year estimate)", current:"$9.50M", detail:"vs $7.20M budget (+$2.30M) · November MTD (Nov 2–15) $5.29/gal · 2027 forecast $8.77M · as of 11/16" },
-      { bucket:1, metric:"DVIR inspection completion", current:"Forklifts 89.3% · Vehicles 64.2% · Trailers 50.3%", detail:"Wednesday 11/18 inspections · 53 defects on 42 assets → 14 new WOs (17 issues), 21 to review, 15 already covered, 0 resolved" },
-      { bucket:1, metric:"Fleet out of service (over 3 days)", current:"3 assets", detail:"Longest 19 days (601025, Tomball) · 3 locations · Montgomery WO closed, Burnet Reload tractor added · 754005 shows 0 days in source (was 29) · as of 11/20" },
+      { bucket:1, metric:"DVIR inspection completion", current:"Forklifts 67.8% · Vehicles 27.1% · Trailers 21.4%", detail:"Saturday 11/21 inspections (weekend day — not comparable to weekday rates) · 20 defects on 14 assets → 3 new WOs, 6 to review, 11 already covered, 0 resolved" },
+      { bucket:1, metric:"Fleet out of service (over 3 days)", current:"3 assets", detail:"Longest 22 days (601025, Tomball) · 3 locations · no change in assets since 11/20 · 754005 age reset in source (29 days on 11/18 → 3 now) · as of 11/23" },
       { bucket:1, metric:"2026 projects complete", current:"123 of 151", detail:"11 behind expected 134 (8%; target within 10%) · 10 active · 15 pre-construction · as of 11/19" }
     ],
 
@@ -304,32 +304,32 @@ const REPORTS = [
       { bucket:1, section:"Fleet Data Analytics", title:"Daily DVIR Analysis", status:"Live",
         notes:[
           "Daily review of driver-reported defects, checked against existing Fexa work orders",
-          "Latest (11/19 update, Wednesday 11/18 inspections): 53 issues across 42 assets → 38 action items",
-          "14 work orders ready to create (17 issues combined) · 21 need review · 15 already covered by an active work order · 0 already resolved",
-          "Inspection completion 11/18: forklifts 89.3% (635 of 711) · vehicles 64.2% (319 of 497) · trailers 50.3% (94 of 187)",
+          "Latest (11/23 update, Saturday 11/21 inspections — a Saturday, so lighter activity): 20 issues across 14 assets → 9 action items",
+          "3 work orders ready to create (3 issues) · 6 need review · 0 parts / store action · 11 already covered by an active work order · 0 already resolved",
+          "Inspection completion Saturday 11/21: forklifts 67.8% (482 of 711) · vehicles 27.1% (134 of 495) · trailers 21.4% (40 of 187) — Saturday figures, not comparable to weekdays (Wednesday 11/18: 89.3% · 64.2% · 50.3%)",
           "Builds a Fexa upload file for new work orders and region emails listing assets missing inspections"
         ],
-        links:[{ label:"Daily DVIR Analysis", url:"https://julianchetlange-svg.github.io/Daily-DVIR-Analysis/", asOf:"11/18 inspections, updated 11/19/2026" }] },
+        links:[{ label:"Daily DVIR Analysis", url:"https://julianchetlange-svg.github.io/Daily-DVIR-Analysis/", asOf:"Saturday 11/21 inspections, updated 11/23/2026" }] },
       { bucket:1, section:"Fleet Data Analytics", title:"Fleet Out of Service (over 3 days)", status:"Live",
         notes:[
           "Daily tracking of known fleet downtime over 3 days, from the Fexa Out Of Service report (weekdays)",
-          "As of 11/20: 3 assets down at 3 locations · longest 19 days",
-          "601025 Pickup — 057 Tomball — 19 days (WO 747965, on hold; still pending alignment) — JRS Road Service",
-          "754005 24' TA Flatbed — 098 Cleveland — WO 763212 open — JRS Road Service · source now shows 0 days down (was 29 on 11/18); likely a Fexa age reset, worth confirming",
-          "New 11/20: 754033 Tractor TA — 359 Burnet Reload — WO 788755 open (deer damage; towed to Holt Truck Centers)",
+          "As of 11/23: 3 assets down at 3 locations (same 3 as 11/20) · longest 22 days",
+          "601025 Pickup — 057 Tomball — 22 days (WO 747965, on hold; still pending alignment) — JRS Road Service",
+          "754005 24' TA Flatbed — 098 Cleveland — WO 763212 open — JRS Road Service · source shows 3 days down (29 on 11/18, 0 on 11/20); looks like a Fexa age reset, worth confirming",
+          "754033 Tractor TA — 359 Burnet Reload — 3 days — WO 788755 open (deer damage; towed to Holt Truck Centers)",
           "Closed 11/19: 755019 24' TA Flatbed — 113 Montgomery (WO 751529)"
         ],
-        links:[{ label:"Fleet Out of Service Tracking", url:"https://julianchetlange-svg.github.io/Fleet-Out-of-Service-Tracking/", asOf:"report of 11/20/2026" }] },
+        links:[{ label:"Fleet Out of Service Tracking", url:"https://julianchetlange-svg.github.io/Fleet-Out-of-Service-Tracking/", asOf:"report of 11/23/2026" }] },
       { bucket:1, section:"Fleet Update", title:"Current Fleet Assets", status:"Live",
         notes:[
           "Daily Fexa fleet asset report — agent-built each morning",
-          "As of 11/20: 1,458 assets at 102 locations · average age 61 months (oldest 334)",
+          "As of 11/23: 1,458 assets at 102 locations (no changes since 11/20) · average age 61 months (oldest 334)",
           "Stores 1,205 (94 locations) · Distribution & Millwork 228 · Headquarters 25",
           "By class: forklifts 484 · trucks 398 · trailers 231 (oldest class, avg 101 months) · TMFLs 221 · LD vehicles 111 · ancillary 13",
           "Changes since tracking began 10/28: 5 added · 5 removed · 5 transferred",
           "Latest: 11/19 new tractor 758006 at 355 Pharr Reload; 12' slide 698002 moved 011 South Austin → 118 Spicewood · 11/20 pickups 599018 (387 NB Window) and 599027 (Region 3 pool) dropped off the report"
         ],
-        links:[{ label:"Current Fleet Assets", url:"https://julianchetlange-svg.github.io/Current-Fleet-Assets/", asOf:"report of 11/20/2026" }] },
+        links:[{ label:"Current Fleet Assets", url:"https://julianchetlange-svg.github.io/Current-Fleet-Assets/", asOf:"report of 11/23/2026" }] },
       { bucket:3, section:"Fleet Update", title:"Fleet Spend — YTD September 2026 (YOY)", status:"Live",
         notes:[
           "Note: this report is only through September",
@@ -396,10 +396,11 @@ const REPORTS = [
       { bucket:1, section:"Agents", title:"Agent Health", status:"Live",
         notes:[
           "Monitors 11 agents — checked at 6 AM, 10:30 AM and 12 PM Central",
-          "As of 11/20 6:16 AM CT: 11 healthy · 0 late · 0 failed · 0 no runs yet",
-          "Estimated labor saved: 56 hours (112 runs × 30 minutes)"
+          "As of 11/23 6:16 AM CT: 8 healthy · 3 late · 0 failed · 0 no runs yet (was 11 of 11 healthy on 11/20)",
+          "Late at the 11/23 6:16 AM check: DVIR master report (44 hours since last run; the DVIR dashboard did update later at 7:19 AM) · Report hub date updater (37 hours) · MTD Fuel Trends (input quiet — Fill-Rite daily report silent past its 36-hour limit over the weekend)",
+          "Estimated labor saved: 62 hours (123 runs × 30 minutes)"
         ],
-        links:[{ label:"Agent Health Dashboard", url:"https://julianchetlange-svg.github.io/Agent-Health-Dashboard/", asOf:"status as of 11/20/2026 6:16 AM CT" }] },
+        links:[{ label:"Agent Health Dashboard", url:"https://julianchetlange-svg.github.io/Agent-Health-Dashboard/", asOf:"status as of 11/23/2026 6:16 AM CT" }] },
       { bucket:1, section:"Agents", title:"Upcoming Agents", status:"Upcoming",
         notes:["Forklift Utilization — Claude — can possibly move to weekly",
                "Fleet Lifecycle & Budgeting — Claude — Monthly",
@@ -408,16 +409,17 @@ const REPORTS = [
         notes:[
           "Created 2027 Fleet Expense forecast for accounting with adaptive associations for clean upload file",
           "Covers 1,454 assets at 110 locations · switched to the 11/18 roster (tractor 758006 delivered 11/18 to replace 747106; 750046 being sold)",
-          "2027 baseline location charges $37.67M (was $35.70M on 11/17) · actual cost $38.08M (was $35.96M)",
-          "Store, loaner-pool & HQ charges $27.20M — now on the 2027 flat rate (fixed by type $12.20M + variable per mile/hour $8.90M, replacing the 2026 flat rate and $0.425/mile) plus fuel · actual-cost locations (Distribution, Millwork, 355CD, 355) $10.47M",
-          "Agreed accounting revision now built into the dashboard and Adaptive export (11/19): 2027 maintenance, registration & inspection and rental lines $15,163,631 (−3.3% vs FY2026 outlook) · Mfg/DC $4.36M, flat rate $10.80M",
-          "Ad valorem tax split out as its own line ($770,860) and left out of the Adaptive export (budgeted in property tax) · 77 book-only depreciation lines added ($218K in 2027)",
+          "2027 baseline location charges $37.07M (was $37.67M on 11/19) · actual cost $37.31M (was $38.08M) — ad valorem tax removed from fleet expense (accounting: it is a property tax) and revised flat rates loaded on 11/20",
+          "Store, loaner-pool & HQ charges $26.88M (was $27.20M) on the 2027 flat rate (fixed by type $11.89M, was $12.20M + variable per mile/hour $8.90M) plus fuel · actual-cost locations (Distribution, Millwork, 355CD, 355) $10.19M (was $10.47M)",
+          "Revised 2027 flat rates (11/20): fixed base + fees lowered about 2.5–3.5% on 23 rate types (e.g. 24' TA Flatbed $1,992.89 → $1,943.49, pickup $646.91 → $631.55) · fixed + variable $20.79M vs $20.18M under the old rate (+3.0%)",
+          "Agreed accounting revision unchanged at $15,163,631 for 2027 maintenance, registration & inspection and rental lines (−3.3% vs FY2026 outlook) · split now Mfg/DC $4.23M, flat rate $10.94M (was $4.36M / $10.80M) after Mfg/DC levels were anchored to their FY2026 amounts · corrected Adaptive import file sent to accounting 11/20",
+          "Fleet expense excluding fuel: $27.47M in location charges ($27.71M actual cost) · 60 recently delivered units now budgeted at least the same-type median maintenance",
           "Fuel is the largest actual cost line: truck $8.20M, forklift $799K, LD $605K — 2027 rate assumed to fall from $5.20 to $3.73 over the year",
           "Replacements: 76 units in 2027 (61 owned sold, 15 leased returned) · $5.62M new-unit capital, delivered January–July",
           "Expected sale proceeds $747K (gain on sale +$730K) · net 2027 expense change +$689K (new depreciation +$745K)",
           "Forklift/TMFL variable rate uses each unit's average monthly hours; 14 TMFLs and 3 forklifts use last-service hour readings because their DVIR hours were unreliable"
         ],
-        links:[{ label:"2027 Fleet Forecast", url:"https://julianchetlange-svg.github.io/2027-Fleet-Forecast/", asOf:"updated 11/19/2026" }] },
+        links:[{ label:"2027 Fleet Forecast", url:"https://julianchetlange-svg.github.io/2027-Fleet-Forecast/", asOf:"updated 11/20/2026" }] },
       { bucket:2, section:"Fleet Update", title:"Distribution — Fleet Support", status:"In Progress",
         notes:["On-site tech is up and running","Tire container dropped on site by STM",
                "Need to follow up with Derwin to see if he wants to make moves on assets"] },
@@ -502,12 +504,13 @@ const REPORTS = [
         notes:[
           "Still a work in progress · rebuilding the flat rate program utilizing AI, working on 2027 rates",
           "Calculator on the 11/13 asset list (1,460 assets): 1,177 charged at 97 stores, 287 at excluded locations",
-          "Current draft: $1.77M per month / $21.23M per year · average $1,503 per asset per month including maintenance (11/18: TMFL & 4-way residual 10%; flatbed and specialty trailers 0%)",
+          "Current draft: $1.74M per month / $20.91M per year (was $1.77M / $21.23M on 11/19) · average $1,481 per asset per month including maintenance (was $1,503)",
+          "11/20: ad valorem tax removed from the rate (accounting: not a vehicle expense), replaced by a 0.40% buffer for discrepancies",
           "Maintenance billed by actual use — rate per mile or hour by asset type (from the cost-per-mile analysis); pickups $0.14/mile · TMFL & 4-way back to per hour on 11/19 (matches the budget); hour readings to be shored up before 2027 go-live",
-          "Back-test on Jan–Oct 2026 usage (all flat-rate locations): new rates $18.18M vs old flat rate billed $17.50M (+3.9%)",
-          "Against accounting, now Jan–Oct (October preliminary): new $17.20M vs allocation $16.79M vs actual expense $17.42M — old under-recovered by $628K; draft now under-recovers by $220K (was over-recovering $398K on Jan–Sep) — still being tuned"
+          "Back-test on Jan–Oct 2026 usage (all flat-rate locations): new rates $17.91M vs old flat rate billed $17.50M (+2.4%; was +3.9%)",
+          "Against accounting, Jan–Oct (October preliminary): new $16.95M vs allocation $16.79M vs actual expense $17.42M — old under-recovered by $628K; draft now under-recovers by $472K (was $220K on 11/19; widened after ad valorem came out of the rate) — still being tuned"
         ],
-        links:[{ label:"Flat Rate Calculator", url:"https://julianchetlange-svg.github.io/Flat-Rate-Charges/", asOf:"work in progress, updated 11/19/2026" }] },
+        links:[{ label:"Flat Rate Calculator", url:"https://julianchetlange-svg.github.io/Flat-Rate-Charges/", asOf:"work in progress, updated 11/20/2026" }] },
       { bucket:3, section:"Fleet Update", title:"Fleet Assets & 2026 Budget", status:"In Progress",
         notes:["Assets purchased: 44 forklifts · 16 trucks · 2 pickups · 2 Lumber Buddy (64 total)",
                "Total assets: 50 planned / 60 delivered / 10 contingency",
