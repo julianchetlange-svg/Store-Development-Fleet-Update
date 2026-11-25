@@ -1,61 +1,61 @@
 {
-  "lastChecked": "2026-11-23T09:37:22-06:00",
+  "lastChecked": "2026-11-25T06:38:54-06:00",
   "sources": [
     {
       "repo": "julianchetlange-svg/PM-Compliance-Dashboard",
       "page": "https://julianchetlange-svg.github.io/PM-Compliance-Dashboard/",
       "item": "Fleet Compliance — PM, Registration & Inspection",
       "bucket": 1,
-      "lastCommit": "ad1f2d3a16626fd4dfd0c522e3a0dc82f406c334"
+      "lastCommit": "f01d552e648e3927d181d50b34e5f29950071f79"
     },
     {
       "repo": "julianchetlange-svg/Fleet-Registration-and-Inspection",
       "page": "https://julianchetlange-svg.github.io/Fleet-Registration-and-Inspection/",
       "item": "Fleet Compliance — PM, Registration & Inspection",
       "bucket": 1,
-      "lastCommit": "71e7300285b2ee828079e420cc93084e9c8066c1"
+      "lastCommit": "c40f3d458e24724a06e37922d90a68e914237ed4"
     },
     {
       "repo": "julianchetlange-svg/Facilities-WO-Follow-Up-Report",
       "page": "https://julianchetlange-svg.github.io/Facilities-WO-Follow-Up-Report/",
       "item": "Average Work Order Age — Facility & Fleet",
       "bucket": 1,
-      "lastCommit": "ccb3c1fc791a0b6ec7dfb44f77ec2edd24a98bbe"
+      "lastCommit": "03540cb70c2f440c2e2386b7c774ebc892e96457"
     },
     {
       "repo": "julianchetlange-svg/Fleet-WO-Follow-Up",
       "page": "https://julianchetlange-svg.github.io/Fleet-WO-Follow-Up/",
       "item": "Average Work Order Age — Facility & Fleet",
       "bucket": 1,
-      "lastCommit": "0175af8905c86c8ab6edf27e00a9cbdb214b1596"
+      "lastCommit": "8846d277da314993a3ce43897aacba8fd501f683"
     },
     {
       "repo": "julianchetlange-svg/Agent-Health-Dashboard",
       "page": "https://julianchetlange-svg.github.io/Agent-Health-Dashboard/",
       "item": "Agent Health",
       "bucket": 1,
-      "lastCommit": "2460448e385e03f1191ca869ea6e2c49675d2f2c"
+      "lastCommit": "ddcbe8ab9bec665d5ae16fdb4ec83fa30e016294"
     },
     {
       "repo": "julianchetlange-svg/Daily-DVIR-Analysis",
       "page": "https://julianchetlange-svg.github.io/Daily-DVIR-Analysis/",
       "item": "Daily DVIR Analysis",
       "bucket": 1,
-      "lastCommit": "ee66d1f00b4a993be9a909cbc565cb0604cedeed"
+      "lastCommit": "bcecef22e2588bfbba826553066a6c3dc9f410b6"
     },
     {
       "repo": "julianchetlange-svg/Fleet-Out-of-Service-Tracking",
       "page": "https://julianchetlange-svg.github.io/Fleet-Out-of-Service-Tracking/",
       "item": "Fleet Out of Service (over 3 days)",
       "bucket": 1,
-      "lastCommit": "97c391c8a2b3dd56f1c9079854f49f608f430c2c"
+      "lastCommit": "8bd088af0ffdbfd0e7552338a114542acbe2c3b7"
     },
     {
       "repo": "julianchetlange-svg/Current-Fleet-Assets",
       "page": "https://julianchetlange-svg.github.io/Current-Fleet-Assets/",
       "item": "Current Fleet Assets",
       "bucket": 1,
-      "lastCommit": "5050b35106942b385499a651a325adbb3999c908"
+      "lastCommit": "7540bd0ec0ccc28c9b71f41837f319738773e724"
     },
     {
       "repo": "julianchetlange-svg/Project-Summary-Progress",
@@ -97,14 +97,14 @@
       "page": "https://julianchetlange-svg.github.io/2027-Fleet-Forecast/",
       "item": "2027 Fleet Forecast",
       "bucket": 2,
-      "lastCommit": "5e381538fbc0ae5c0198f01609b9d46b74f2d97b"
+      "lastCommit": "135e240313f8cead253ebcd88b9a2863e66f59f2"
     },
     {
       "repo": "julianchetlange-svg/CAPEX-Budget-Planning",
       "page": "https://julianchetlange-svg.github.io/CAPEX-Budget-Planning/",
       "item": "2027 CAPEX Budget Planning",
       "bucket": 2,
-      "lastCommit": "f3b5ed2297003ff1a240d91ff368ec50afce5bd8"
+      "lastCommit": "0be331240493f983710327c38f297b0e1ed1df54"
     },
     {
       "repo": "julianchetlange-svg/MTD-Fuel-Trends",
@@ -139,7 +139,7 @@
       "page": "https://julianchetlange-svg.github.io/Flat-Rate-Charges/",
       "item": "2027 Flat Rate (work in progress)",
       "bucket": 2,
-      "lastCommit": "b5ca8bc017ba37e9cc8f2fd64ce6111190322d1b"
+      "lastCommit": "12b2225280cc42eb3a927c8521e18e015d756003"
     },
     {
       "repo": "julianchetlange-svg/Facility-Spend-Dashboard",

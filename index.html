@@ -220,19 +220,19 @@ const REPORTS = [
     ],
 
     health:[
-      { bucket:1, metric:"PM compliance (overdue)", current:"1.78%", detail:"26 of 1,458 assets as of 11/16 (down from 1.92%) · all have open WOs · 1 critical (>90 days)" },
-      { bucket:1, metric:"Registration & inspection", current:"2.3% · 3 overdue", detail:"17 of 739 assets due in 30 days or less as of 11/18 (down from 3.1% on 11/11) · 3 overdue: 1 registration, 2 inspections (down 77% from 13 on 07/29)" },
-      { bucket:1, metric:"Fleet — average work order age", current:"11.0 days", detail:"90-day change: ▼ 2.9 days (−21%) from 13.9 on 8/25 · prior week 10.7 · as of 11/16" },
-      { bucket:1, metric:"Facility — average work order age", current:"21.1 days", detail:"90-day change: ▼ 5.2 days (−20%) from 26.3 on 8/21 · prior week 23.4 (first drop after 3 weeks up) · as of 11/16" },
+      { bucket:1, metric:"PM compliance (overdue)", current:"1.78%", detail:"26 of 1,459 assets as of 11/23 (flat vs 11/16 — the same 26 assets, none cleared this week) · all have open WOs · 1 critical (>90 days)" },
+      { bucket:1, metric:"Registration & inspection", current:"1.2% · 2 overdue", detail:"9 of 737 assets due in 30 days or less as of 11/25 (down from 2.3% on 11/18) · 2 overdue: 1 registration, 1 inspection (down 85% from 13 on 07/29)" },
+      { bucket:1, metric:"Fleet — average work order age", current:"13.3 days", detail:"90-day change: ▼ 0.6 days (−4%) from 13.9 on 8/25 · prior week 11.0 · as of 11/23 (rental and Capital Printing WOs now excluded by the source)" },
+      { bucket:1, metric:"Facility — average work order age", current:"17.5 days", detail:"90-day change: ▼ 9.4 days (−35%) from 26.9 on 8/27 · prior week 21.1 (second straight weekly drop) · as of 11/23" },
       { bucket:3, metric:"Fleet expenses YTD (through September)", current:"$12.015M", detail:"Down $1.28M vs 2025 · maintenance categories all at or below 2025 · fuel +$1.27M (+20.3%) · tires +11.9%" },
       { bucket:3, metric:"Facilities maintenance spend YTD (excl. CAPEX & PM)", current:"$3.207M", detail:"Down $962K (−23.1%) vs 2025 YTD ($4.169M) · October −4.2% vs prior year · PM $889K YTD (+7.0%) · through October" },
       { bucket:2, metric:"Truck utilization (fleet average)", current:"27.0%", detail:"Target ≥40% · 0 of 94 stores on target, 8 watch · 9 non-pickup assets under 10% (removal candidates) · Jan–Oct" },
       { bucket:2, metric:"Forklift utilization (hours per day)", current:"Stores 3.329 · DCs 3.51", detail:"412 store + 51 DC units · 26 removed to date ($323,742/yr) · Round 2: $266,332/yr identified · DC: $54,946/yr recommended · through 10/31" },
       { bucket:2, metric:"Fleet all-in cost per mile", current:"$2.77", detail:"Last 3 months $2.86 · delivery fleet $2.18 · forklift $17.10/hr · TMFL $54.97/hr · Jan–Oct total $32.09M (actual book depreciation)" },
-      { bucket:1, metric:"Agent health", current:"8 of 11 healthy", detail:"3 late (DVIR master report, Report hub date updater, MTD Fuel Trends input quiet) · 0 failed · ~62 hrs labor saved (123 runs) · as of 11/23 6:16 AM" },
+      { bucket:1, metric:"Agent health", current:"10 of 11 healthy", detail:"1 late (BMS Alert Report — no run since Mon 11/23 9:11 AM) · 0 failed · ~68 hrs labor saved (135 runs) · as of 11/25 6:15 AM" },
       { bucket:2, metric:"2026 fuel (full-year estimate)", current:"$9.50M", detail:"vs $7.20M budget (+$2.30M) · November MTD (Nov 2–15) $5.29/gal · 2027 forecast $8.77M · as of 11/16" },
-      { bucket:1, metric:"DVIR inspection completion", current:"Forklifts 67.8% · Vehicles 27.1% · Trailers 21.4%", detail:"Saturday 11/21 inspections (weekend day — not comparable to weekday rates) · 20 defects on 14 assets → 3 new WOs, 6 to review, 11 already covered, 0 resolved" },
-      { bucket:1, metric:"Fleet out of service (over 3 days)", current:"3 assets", detail:"Longest 22 days (601025, Tomball) · 3 locations · no change in assets since 11/20 · 754005 age reset in source (29 days on 11/18 → 3 now) · as of 11/23" },
+      { bucket:1, metric:"DVIR inspection completion", current:"Forklifts 86.5% · Vehicles 62.0% · Trailers 45.5%", detail:"Monday 11/23 inspections (Wed 11/18: 89.3% · 64.2% · 50.3%) · 53 defects on 38 assets → 8 new WOs (9 issues), 24 to review, 15 already covered, 5 resolved" },
+      { bucket:1, metric:"Fleet out of service (over 3 days)", current:"4 assets", detail:"Longest 24 days (601025 Tomball; 755010 Brenham, new to the report 11/25) · 4 locations · 754005 age reset in source (29 days on 11/18 → 5 now) · as of 11/25" },
       { bucket:1, metric:"2026 projects complete", current:"123 of 151", detail:"11 behind expected 134 (8%; target within 10%) · 10 active · 15 pre-construction · as of 11/19" }
     ],
 
@@ -271,65 +271,68 @@ const REPORTS = [
       { bucket:1, section:"Fleet Data Analytics", title:"Fleet Compliance — PM, Registration & Inspection", status:"Live",
         notes:[
           "PM Compliance — agent automated; running great, still hovering around 2–3%; below 2% the past 2 weeks",
-          "PM (11/16): 26 of 1,458 assets overdue (1.78%), down from 28 (1.92%) on 11/09; down from 73 (4.79%) on 05/19",
-          "PM: all 26 overdue assets have an open work order; 1 critical (>90 days) — 12' Slide Flatbed 699008 at 450 McCoys Millworks, now 135 days overdue",
+          "PM (11/23): 26 of 1,459 assets overdue (1.78%), flat vs 11/16 and down from 28 (1.92%) on 11/09; down from 73 (4.79%) on 05/19",
+          "PM: the same 26 assets as 11/16 are still overdue — none cleared during the week; average days overdue up from 15 to 22",
+          "PM: all 26 overdue assets have an open work order; 1 critical (>90 days) — 12' Slide Flatbed 699008 at 450 McCoys Millworks, now 142 days overdue",
           "Registration & Inspection — agent automated",
-          "Reg & Insp (11/18): 17 of 739 assets need attention (due in 30 days or less) — 2.3%, down from 23 (3.1%) on 11/11 and 55 (7.5%) on 11/04",
-          "Reg & Insp: 3 assets overdue (1 registration, 2 inspections) — down from 8 on 11/11 and 13 on 07/29 (−77%); 14 inspections due by 11/30; 0 data gaps"
+          "Reg & Insp (11/25): 9 of 737 assets need attention (due in 30 days or less) — 1.2%, down from 17 (2.3%) on 11/18 and 23 (3.1%) on 11/11",
+          "Reg & Insp: 2 assets overdue (1 registration, 1 inspection) — down from 3 on 11/18 and 13 on 07/29 (−85%); 7 inspections due by 11/30; 1 data gap (missing registration expiration)"
         ],
         links:[
-          { label:"PM Compliance Dashboard", url:"https://julianchetlange-svg.github.io/PM-Compliance-Dashboard/", asOf:"data as of 11/16/2026" },
-          { label:"Registration & Inspection Dashboard", url:"https://julianchetlange-svg.github.io/Fleet-Registration-and-Inspection/", asOf:"data as of 11/18/2026" }
+          { label:"PM Compliance Dashboard", url:"https://julianchetlange-svg.github.io/PM-Compliance-Dashboard/", asOf:"data as of 11/23/2026" },
+          { label:"Registration & Inspection Dashboard", url:"https://julianchetlange-svg.github.io/Fleet-Registration-and-Inspection/", asOf:"data as of 11/25/2026" }
         ] },
       { bucket:1, section:"Fleet Data Analytics", title:"Average Work Order Age — Facility & Fleet", status:"In Progress",
         notes:[
           "Work order follow-up in place; moved several vendors to auto dispatch",
           "Automated process with Fexa underway for follow-up emails · Agent automated",
           "Facility team continues to make improvements on work order management",
-          "Fleet (11/16): average age 11.0 days, up from 10.7 on 11/09; down from 14.2 on 07/09 · 494 open (513 prior week) · 42 over 30 days (36 prior) · none over 90 · oldest 88 days",
-          "Facility (11/16): average age 21.1 days, down from 23.4 on 11/09 — ends a 3-week rise; down from 32.6 on 05/25 · 161 open (166 prior week) · 51 over 30 days (23 prior) · 4 over 90 · oldest 198 days"
+          "Fleet (11/23): average age 13.3 days, up from 11.0 on 11/16 — second weekly rise; down from 14.2 on 07/09 · 434 open (494 prior week) · 47 over 30 days (42 prior) · 3 over 90 (none prior) · oldest 209 days (88 prior)",
+          "Fleet scope change 11/23: the source now excludes rental-category and Capital Printing WOs (16 rows this week) and was rebuilt from a resent Fexa report — week-over-week counts are not exactly like-for-like",
+          "Facility (11/23): average age 17.5 days, down from 21.1 on 11/16 — second straight drop; down from 32.6 on 05/25 · 156 open (161 prior week) · 35 over 30 days (51 prior) · 2 over 90 (4 prior) · oldest 205 days"
         ],
         charts:[
           { title:"Fleet — average work order age, last 90 days", unit:"days", yMax:40,
             points:[["8/25",13.9],["9/7",12.4],["9/16",11.4],["9/22",12.0],["9/28",11.6],
-                    ["10/6",11.0],["10/13",10.1],["10/19",10.8],["10/26",11.1],["11/2",11.6],["11/9",10.7],["11/16",11.0]] },
+                    ["10/6",11.0],["10/13",10.1],["10/19",10.8],["10/26",11.1],["11/2",11.6],["11/9",10.7],["11/16",11.0],["11/23",13.3]] },
           { title:"Facility — average work order age, last 90 days", unit:"days", yMax:40,
-            points:[["8/21",26.3],["8/27",26.9],["9/7",27.1],["9/16",25.1],["9/22",21.7],
-                    ["9/28",23.2],["10/5",19.7],["10/13",25.5],["10/19",15.5],["10/26",17.7],["11/2",20.3],["11/9",23.4],["11/16",21.1]] }
+            points:[["8/27",26.9],["9/7",27.1],["9/16",25.1],["9/22",21.7],
+                    ["9/28",23.2],["10/5",19.7],["10/13",25.5],["10/19",15.5],["10/26",17.7],["11/2",20.3],["11/9",23.4],["11/16",21.1],["11/23",17.5]] }
         ],
         links:[
-          { label:"Facilities WO Follow-Up Report", url:"https://julianchetlange-svg.github.io/Facilities-WO-Follow-Up-Report/", asOf:"data as of 11/16/2026" },
-          { label:"Fleet WO Follow-Up Report", url:"https://julianchetlange-svg.github.io/Fleet-WO-Follow-Up/", asOf:"data as of 11/16/2026" }
+          { label:"Facilities WO Follow-Up Report", url:"https://julianchetlange-svg.github.io/Facilities-WO-Follow-Up-Report/", asOf:"data as of 11/23/2026" },
+          { label:"Fleet WO Follow-Up Report", url:"https://julianchetlange-svg.github.io/Fleet-WO-Follow-Up/", asOf:"data as of 11/23/2026 (rebuilt 3:42 PM)" }
         ] },
       { bucket:1, section:"Fleet Data Analytics", title:"Daily DVIR Analysis", status:"Live",
         notes:[
           "Daily review of driver-reported defects, checked against existing Fexa work orders",
-          "Latest (11/23 update, Saturday 11/21 inspections — a Saturday, so lighter activity): 20 issues across 14 assets → 9 action items",
-          "3 work orders ready to create (3 issues) · 6 need review · 0 parts / store action · 11 already covered by an active work order · 0 already resolved",
-          "Inspection completion Saturday 11/21: forklifts 67.8% (482 of 711) · vehicles 27.1% (134 of 495) · trailers 21.4% (40 of 187) — Saturday figures, not comparable to weekdays (Wednesday 11/18: 89.3% · 64.2% · 50.3%)",
+          "Latest (11/24 update, Monday 11/23 inspections): 53 issues across 38 assets → 33 action items",
+          "8 work orders ready to create (9 issues combined) · 24 need review · 0 parts / store action · 15 already covered by an active work order · 5 already resolved",
+          "Inspection completion Monday 11/23: forklifts 86.5% (615 of 711) · vehicles 62.0% (307 of 495) · trailers 45.5% (85 of 187) — a little below Wednesday 11/18 (89.3% · 64.2% · 50.3%)",
           "Builds a Fexa upload file for new work orders and region emails listing assets missing inspections"
         ],
-        links:[{ label:"Daily DVIR Analysis", url:"https://julianchetlange-svg.github.io/Daily-DVIR-Analysis/", asOf:"Saturday 11/21 inspections, updated 11/23/2026" }] },
+        links:[{ label:"Daily DVIR Analysis", url:"https://julianchetlange-svg.github.io/Daily-DVIR-Analysis/", asOf:"Monday 11/23 inspections, updated 11/24/2026" }] },
       { bucket:1, section:"Fleet Data Analytics", title:"Fleet Out of Service (over 3 days)", status:"Live",
         notes:[
           "Daily tracking of known fleet downtime over 3 days, from the Fexa Out Of Service report (weekdays)",
-          "As of 11/23: 3 assets down at 3 locations (same 3 as 11/20) · longest 22 days",
-          "601025 Pickup — 057 Tomball — 22 days (WO 747965, on hold; still pending alignment) — JRS Road Service",
-          "754005 24' TA Flatbed — 098 Cleveland — WO 763212 open — JRS Road Service · source shows 3 days down (29 on 11/18, 0 on 11/20); looks like a Fexa age reset, worth confirming",
-          "754033 Tractor TA — 359 Burnet Reload — 3 days — WO 788755 open (deer damage; towed to Holt Truck Centers)",
+          "As of 11/25: 4 assets down at 4 locations (3 on 11/23) · longest 24 days",
+          "601025 Pickup — 057 Tomball — 24 days (WO 747965, on hold; still pending alignment) — JRS Road Service",
+          "New 11/25: 755010 24' TA Flatbed — 060 Brenham — 24 days (WO 774398 open; check engine light / derate, waiting on a dealer diagnostic) — JRS Road Service",
+          "754005 24' TA Flatbed — 098 Cleveland — WO 763212 open — JRS Road Service · source shows 5 days down (29 on 11/18, 0 on 11/20); looks like a Fexa age reset, worth confirming",
+          "754033 Tractor TA — 359 Burnet Reload — 5 days — WO 788755 open (deer damage; parts ordered, in the Holt Truck Centers body shop)",
           "Closed 11/19: 755019 24' TA Flatbed — 113 Montgomery (WO 751529)"
         ],
-        links:[{ label:"Fleet Out of Service Tracking", url:"https://julianchetlange-svg.github.io/Fleet-Out-of-Service-Tracking/", asOf:"report of 11/23/2026" }] },
+        links:[{ label:"Fleet Out of Service Tracking", url:"https://julianchetlange-svg.github.io/Fleet-Out-of-Service-Tracking/", asOf:"report of 11/25/2026" }] },
       { bucket:1, section:"Fleet Update", title:"Current Fleet Assets", status:"Live",
         notes:[
           "Daily Fexa fleet asset report — agent-built each morning",
-          "As of 11/23: 1,458 assets at 102 locations (no changes since 11/20) · average age 61 months (oldest 334)",
-          "Stores 1,205 (94 locations) · Distribution & Millwork 228 · Headquarters 25",
-          "By class: forklifts 484 · trucks 398 · trailers 231 (oldest class, avg 101 months) · TMFLs 221 · LD vehicles 111 · ancillary 13",
-          "Changes since tracking began 10/28: 5 added · 5 removed · 5 transferred",
-          "Latest: 11/19 new tractor 758006 at 355 Pharr Reload; 12' slide 698002 moved 011 South Austin → 118 Spicewood · 11/20 pickups 599018 (387 NB Window) and 599027 (Region 3 pool) dropped off the report"
+          "As of 11/25: 1,456 assets at 102 locations (1,458 on 11/23) · average age 61 months (oldest 334)",
+          "Stores 1,203 (94 locations) · Distribution & Millwork 228 · Headquarters 25",
+          "By class: forklifts 484 · trucks 397 · trailers 231 (oldest class, avg 102 months) · TMFLs 220 · LD vehicles 111 · ancillary 13",
+          "Changes since tracking began 10/28: 5 added · 7 removed · 5 transferred",
+          "Latest: 11/24 TMFL 242012 and 24' TA flatbed 758011 dropped off the report (both at 355CD Pharr Central Delivery) · 11/20 pickups 599018 (387 NB Window) and 599027 (Region 3 pool) dropped off · 11/19 new tractor 758006 at 355 Pharr Reload"
         ],
-        links:[{ label:"Current Fleet Assets", url:"https://julianchetlange-svg.github.io/Current-Fleet-Assets/", asOf:"report of 11/23/2026" }] },
+        links:[{ label:"Current Fleet Assets", url:"https://julianchetlange-svg.github.io/Current-Fleet-Assets/", asOf:"report of 11/25/2026" }] },
       { bucket:3, section:"Fleet Update", title:"Fleet Spend — YTD September 2026 (YOY)", status:"Live",
         notes:[
           "Note: this report is only through September",
@@ -396,11 +399,12 @@ const REPORTS = [
       { bucket:1, section:"Agents", title:"Agent Health", status:"Live",
         notes:[
           "Monitors 11 agents — checked at 6 AM, 10:30 AM and 12 PM Central",
-          "As of 11/23 6:16 AM CT: 8 healthy · 3 late · 0 failed · 0 no runs yet (was 11 of 11 healthy on 11/20)",
-          "Late at the 11/23 6:16 AM check: DVIR master report (44 hours since last run; the DVIR dashboard did update later at 7:19 AM) · Report hub date updater (37 hours) · MTD Fuel Trends (input quiet — Fill-Rite daily report silent past its 36-hour limit over the weekend)",
-          "Estimated labor saved: 62 hours (123 runs × 30 minutes)"
+          "As of 11/25 6:15 AM CT: 10 healthy · 1 late · 0 failed · 0 no runs yet (was 8 of 11 healthy on 11/23)",
+          "Late at the 11/25 6:15 AM check: BMS Alert Report — last run Mon 11/23 9:11 AM CT, no Tuesday 11/24 run",
+          "Recovered since 11/23: DVIR master report (ran 11/23 and 11/24) · Report hub date updater (ran 11/23 and 11/24) · MTD Fuel Trends inputs no longer quiet",
+          "Estimated labor saved: 68 hours (135 runs × 30 minutes)"
         ],
-        links:[{ label:"Agent Health Dashboard", url:"https://julianchetlange-svg.github.io/Agent-Health-Dashboard/", asOf:"status as of 11/23/2026 6:16 AM CT" }] },
+        links:[{ label:"Agent Health Dashboard", url:"https://julianchetlange-svg.github.io/Agent-Health-Dashboard/", asOf:"status as of 11/25/2026 6:15 AM CT" }] },
       { bucket:1, section:"Agents", title:"Upcoming Agents", status:"Upcoming",
         notes:["Forklift Utilization — Claude — can possibly move to weekly",
                "Fleet Lifecycle & Budgeting — Claude — Monthly",
@@ -408,18 +412,19 @@ const REPORTS = [
       { bucket:2, section:"CAPEX & Budget Planning", title:"2027 Fleet Forecast", status:"Complete",
         notes:[
           "Created 2027 Fleet Expense forecast for accounting with adaptive associations for clean upload file",
-          "Covers 1,454 assets at 110 locations · switched to the 11/18 roster (tractor 758006 delivered 11/18 to replace 747106; 750046 being sold)",
-          "2027 baseline location charges $37.07M (was $37.67M on 11/19) · actual cost $37.31M (was $38.08M) — ad valorem tax removed from fleet expense (accounting: it is a property tax) and revised flat rates loaded on 11/20",
-          "Store, loaner-pool & HQ charges $26.88M (was $27.20M) on the 2027 flat rate (fixed by type $11.89M, was $12.20M + variable per mile/hour $8.90M) plus fuel · actual-cost locations (Distribution, Millwork, 355CD, 355) $10.19M (was $10.47M)",
-          "Revised 2027 flat rates (11/20): fixed base + fees lowered about 2.5–3.5% on 23 rate types (e.g. 24' TA Flatbed $1,992.89 → $1,943.49, pickup $646.91 → $631.55) · fixed + variable $20.79M vs $20.18M under the old rate (+3.0%)",
-          "Agreed accounting revision unchanged at $15,163,631 for 2027 maintenance, registration & inspection and rental lines (−3.3% vs FY2026 outlook) · split now Mfg/DC $4.23M, flat rate $10.94M (was $4.36M / $10.80M) after Mfg/DC levels were anchored to their FY2026 amounts · corrected Adaptive import file sent to accounting 11/20",
-          "Fleet expense excluding fuel: $27.47M in location charges ($27.71M actual cost) · 60 recently delivered units now budgeted at least the same-type median maintenance",
-          "Fuel is the largest actual cost line: truck $8.20M, forklift $799K, LD $605K — 2027 rate assumed to fall from $5.20 to $3.73 over the year",
-          "Replacements: 76 units in 2027 (61 owned sold, 15 leased returned) · $5.62M new-unit capital, delivered January–July",
-          "Expected sale proceeds $747K (gain on sale +$730K) · net 2027 expense change +$689K (new depreciation +$745K)",
+          "Covers 1,454 assets at 110 locations on the 11/18 roster (tractor 758006 delivered 11/18 to replace 747106; 750046 being sold)",
+          "New 11/24: 355CD Pharr Central Delivery disbanded January 1, 2027 — 26 units move to stores, pool 764, 355 Pharr Reload and 450; 2 leased units returned and 2 sold; 4 store units replaced by 355CD units and sold (3 planned purchases cancelled); 355CD carries nothing in 2027",
+          "2027 baseline location charges $36.93M (was $37.07M on 11/20) · actual cost $37.22M (was $37.31M) — after the 355CD disband and removal of two book-only wrap depreciation lines",
+          "Store, loaner-pool & HQ charges $27.33M (was $26.88M) on the 2027 flat rate (fixed by type $12.08M, was $11.89M + variable per mile/hour $9.04M, was $8.90M) plus fuel · actual-cost locations (Distribution, Millwork, 355CD, 355) $9.59M (was $10.19M) — mostly units moving from 355CD to flat-rate stores",
+          "Revised 2027 flat rates (11/20): fixed base + fees lowered about 2.5–3.5% on 23 rate types (e.g. 24' TA Flatbed $1,992.89 → $1,943.49, pickup $646.91 → $631.55) · fixed + variable now $21.12M (was $20.79M on 11/20)",
+          "Agreed accounting revision unchanged at $15,163,631 for 2027 maintenance, registration & inspection and rental lines (−3.3% vs FY2026 outlook) · Mfg/DC levels keep their FY2026 amounts adjusted for moved units; the rest sits on the flat-rate side · new Adaptive import file built 11/24 (no 355CD rows)",
+          "Fleet expense excluding fuel: $27.37M in location charges ($27.66M actual cost; was $27.47M / $27.71M) · 60 recently delivered units budgeted at least the same-type median maintenance",
+          "Fuel is the largest actual cost line: truck $8.17M, forklift $794K, LD $590K — 2027 rate assumed to fall from $5.20 to $3.73 over the year",
+          "Replacements: 79 units in 2027 (64 owned sold, 15 leased returned; was 76) · 71 new units delivered January–July · $5.35M new-unit capital (was $5.62M; 355CD purchases cancelled, 241009 disposed and dropped)",
+          "Expected sale proceeds $779K (was $747K) · gain on sale +$762K (was +$730K) · net 2027 expense change +$646K (was +$689K; new depreciation +$711K)",
           "Forklift/TMFL variable rate uses each unit's average monthly hours; 14 TMFLs and 3 forklifts use last-service hour readings because their DVIR hours were unreliable"
         ],
-        links:[{ label:"2027 Fleet Forecast", url:"https://julianchetlange-svg.github.io/2027-Fleet-Forecast/", asOf:"updated 11/20/2026" }] },
+        links:[{ label:"2027 Fleet Forecast", url:"https://julianchetlange-svg.github.io/2027-Fleet-Forecast/", asOf:"updated 11/24/2026" }] },
       { bucket:2, section:"Fleet Update", title:"Distribution — Fleet Support", status:"In Progress",
         notes:["On-site tech is up and running","Tire container dropped on site by STM",
                "Need to follow up with Derwin to see if he wants to make moves on assets"] },
@@ -455,13 +460,14 @@ const REPORTS = [
       { bucket:2, section:"CAPEX & Budget Planning", title:"2027 CAPEX Budget Planning", status:"In Progress",
         notes:[
           "Adjusted from round 1 meeting · need to make asset timing adjustments",
-          "As of 11/13 Fexa file: 120 projects · $29.47M overall 2027 CAPEX (2027 portion only)",
-          "Committed $19.18M (65.1%, 18 projects): Pre-Construction $9.13M · Active $7.06M · Budget Plan $2.88M · On Order $104K",
-          "Candidate $10.29M (34.9%, 102 budget requests): Store Development $6.00M (50) · Fleet $4.29M (52)",
-          "By area: Store Development $22.20M (75.3%) — new facilities $16.19M, contingency $2.0M · Fleet $7.28M (24.7%) — lifecycle forklifts $1.88M, TMFLs $1.74M, tractors $1.65M, light duty $780K, additions $1.23M",
+          "As of 11/24 Fexa files: 116 projects · $29.77M overall 2027 CAPEX (2027 portion only) — up $291K from $29.47M (120 projects) on 11/13",
+          "Committed $19.02M (63.9%, 17 projects): Pre-Construction $9.13M · Active $7.06M · Budget Plan $2.72M · On Order $104K",
+          "Candidate $10.75M (36.1%, 99 budget requests): Store Development $6.70M (51) · Fleet $4.05M (48)",
+          "By area: Store Development $22.90M (76.9%) — new facilities $16.19M, contingency $2.0M, fire suppression $700K · Fleet $6.87M (23.1%) — lifecycle forklifts $1.75M, TMFLs $1.57M, tractors $1.49M, light duty $835K, additions $1.23M",
+          "11/24 changes: added 450 Millworks fire suppression system replacement ($700K) · removed 5 fleet lifecycle projects (004 League City and 020 Victoria TMFLs, 108 Rio Grande City forklift, 355 Pharr tractor, two 355CD forklifts; −$464K) · 450 Millwork pickups now 2 ($110K, +$55K) · 355CD tractor reassigned to 353 Dayton",
           "11/13 changes: added HQ HVAC RTU replacement · 8303 delivers January 2027"
         ],
-        links:[{ label:"2027 CAPEX Budget Planning", url:"https://julianchetlange-svg.github.io/CAPEX-Budget-Planning/", asOf:"Fexa data as of 11/13/2026" }] },
+        links:[{ label:"2027 CAPEX Budget Planning", url:"https://julianchetlange-svg.github.io/CAPEX-Budget-Planning/", asOf:"Fexa data as of 11/24/2026" }] },
       { bucket:2, section:"Construction/Facility", title:"Budget Meeting — Approved Items", status:"In Progress",
         notes:["All approved items moving forward or complete",
                "Active: 061 Complete · 359 Complete · 037 Complete · 050 Complete · 066 Starts 11/17 · 359 Forklift (Container) Ordered",
@@ -493,7 +499,8 @@ const REPORTS = [
           "2027 forecast for 355CD Pharr Central Delivery, 355 Pharr Reload and 11 Region 5 stores — 125 assets",
           "Current scenario: 10 assets moved to stores, 5 relocated out of Region 5 · 355CD goes from 29 to 16 assets",
           "Location charges $2.58M baseline → $2.53M scenario (−$53K): central charges −$214K, store charges +$162K",
-          "Region 5 operating cost −$61K — mostly $54K of removals, which moves to the receiving regions rather than leaving the company"
+          "Region 5 operating cost −$61K — mostly $54K of removals, which moves to the receiving regions rather than leaving the company",
+          "Note: the 2027 Fleet Forecast (11/24) now disbands 355CD on January 1, 2027 (26 units moved out), while this analysis (11/04) keeps 355CD at 16 assets — flagged, not reconciled"
         ],
         links:[{ label:"355CD / Region 5 Fleet Analysis", url:"https://julianchetlange-svg.github.io/355CD-Region-5-Analysis/", asOf:"updated 11/04/2026" }] },
       { bucket:1, section:"Internal Teams & Construction Supervisors", title:"Internal Teams", status:"In Progress",
